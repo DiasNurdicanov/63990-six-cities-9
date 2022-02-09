@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
-* Студент: [Дияс Нурдыканов](https://up.htmlacademy.ru/react/9/user/63990).
-* Наставник: `Артём Рудов`.
+* Студент: [Дияс Нурдыканов](https://htmlacademy.ru/profile/id63990).
+* Наставник: [Артём Рудов](https://htmlacademy.ru/profile/artrudov).
 
 ---
 
