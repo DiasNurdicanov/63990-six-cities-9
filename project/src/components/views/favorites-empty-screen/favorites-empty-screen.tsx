@@ -1,6 +1,6 @@
-import SvgSprite from '../svg-sprite/svg-sprite';
-import Header from '../header/header';
-import Footer from '../footer/footer';
+import SvgSprite from '../../common/svg-sprite/svg-sprite';
+import Header from '../../common/header/header';
+import Footer from '../../common/footer/footer';
 
 function FavoritesEmptyScreen(): JSX.Element {
   return (

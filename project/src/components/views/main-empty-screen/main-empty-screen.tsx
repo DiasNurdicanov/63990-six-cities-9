@@ -1,6 +1,6 @@
-import SvgSprite from '../svg-sprite/svg-sprite';
-import Header from '../header/header';
-import Locations from '../locations/locations';
+import SvgSprite from '../../common/svg-sprite/svg-sprite';
+import Header from '../../common/header/header';
+import Locations from '../../common/locations/locations';
 
 function MainScreen(): JSX.Element {
   return (

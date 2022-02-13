@@ -1,4 +1,4 @@
-import MainScreen from '../main-screen/main-screen';
+import MainScreen from '../views/main-screen/main-screen';
 
 type AppProps = {
   placesCount: number;

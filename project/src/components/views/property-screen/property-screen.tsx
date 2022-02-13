@@ -1,7 +1,7 @@
-import SvgSprite from '../svg-sprite/svg-sprite';
-import Header from '../header/header';
-import Property from '../property/property';
-import NearPlaces from '../near-places/near-places';
+import SvgSprite from '../../common/svg-sprite/svg-sprite';
+import Header from '../../common/header/header';
+import Property from '../../common/property/property';
+import NearPlaces from '../../common/near-places/near-places';
 
 function PropertyScreen(): JSX.Element {
   return (

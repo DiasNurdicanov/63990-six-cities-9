@@ -1,7 +1,7 @@
-import SvgSprite from '../svg-sprite/svg-sprite';
-import Header from '../header/header';
-import Locations from '../locations/locations';
-import Cities from '../cities/cities';
+import SvgSprite from '../../common/svg-sprite/svg-sprite';
+import Header from '../../common/header/header';
+import Locations from '../../common/locations/locations';
+import Cities from '../../common/cities/cities';
 
 type MainScreenProps = {
   placesCount: number;
