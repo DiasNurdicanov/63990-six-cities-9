@@ -1,5 +1,6 @@
 import SvgSprite from '../../common/svg-sprite/svg-sprite';
 import Header from '../../common/header/header';
+import { AuthorizationStatus } from '../../../const/auth-status';
 
 function LoginScreen(): JSX.Element {
   return (
@@ -7,7 +8,7 @@ function LoginScreen(): JSX.Element {
       <SvgSprite />
 
       <div className='page page--gray page--login'>
-        <Header isAuth={false} showNav={false} />
+        <Header authStatus={AuthorizationStatus.NoAuth} showNav={false} />
 
         <main className='page__main page__main--login'>
           <div className='page__login-container container'>
