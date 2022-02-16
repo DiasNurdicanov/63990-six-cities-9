@@ -2,13 +2,13 @@ import SvgSprite from '../../common/svg-sprite/svg-sprite';
 import Header from '../../common/header/header';
 import Footer from '../../common/footer/footer';
 
-function FavoritesEmpty(): JSX.Element {
+function FavoritesScreen(): JSX.Element {
   return (
     <>
       <SvgSprite />
 
       <div className='page'>
-        <Header isAuth showNav />
+        <Header />
 
         <main className='page__main page__main--favorites'>
           <div className='page__favorites-container container'>
@@ -164,4 +164,4 @@ function FavoritesEmpty(): JSX.Element {
   );
 }
 
-export default FavoritesEmpty;
+export default FavoritesScreen;

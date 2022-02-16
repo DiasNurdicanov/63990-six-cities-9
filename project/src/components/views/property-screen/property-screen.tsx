@@ -9,7 +9,7 @@ function PropertyScreen(): JSX.Element {
       <SvgSprite />
 
       <div className='page'>
-        <Header isAuth showNav />
+        <Header />
 
         <main className='page__main page__main--property'>
           <Property isAuth />
