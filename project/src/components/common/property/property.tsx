@@ -1,8 +1,12 @@
+import { AuthorizationStatus } from '../../../const/auth-status';
+
 type PropertyProps = {
-  isAuth: boolean
+  authStatus?: AuthorizationStatus,
 }
 
-function Property({isAuth}: PropertyProps): JSX.Element {
+function Property({authStatus = AuthorizationStatus.Auth}: PropertyProps): JSX.Element {
+  const isAuth = authStatus === AuthorizationStatus.Auth;
+
   return (
     <section className='property'>
       <div className='property__gallery-container container'>
