@@ -1,12 +1,14 @@
 import Locations from '../../common/locations/locations';
 import Cities from '../../common/cities/cities';
 import Layout from '../../common/layout/layout';
+import { PlaceCardProps } from '../../../types/place-card';
 
 type MainScreenProps = {
   placesCount: number;
+  cards: PlaceCardProps[];
 }
 
-function MainScreen({placesCount}: MainScreenProps): JSX.Element {
+function MainScreen({placesCount, cards}: MainScreenProps): JSX.Element {
   return (
     <Layout
       pageClassName='page--gray page--main'
@@ -17,7 +19,7 @@ function MainScreen({placesCount}: MainScreenProps): JSX.Element {
         <div className='tabs'>
           <Locations />
         </div>
-        <Cities placesCount={placesCount} />
+        <Cities placesCount={placesCount} cards={cards} />
       </>
     </Layout>
   );

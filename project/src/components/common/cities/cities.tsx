@@ -1,10 +1,12 @@
-import PlaceCard from '../place-card/place-card';
+import { PlaceCardProps } from '../../../types/place-card';
+import PlaceCardsList from '../place-cards-list/place-cards-list';
 
 type CitiesProps = {
   placesCount: number;
+  cards: PlaceCardProps[];
 }
 
-function Cities({placesCount}: CitiesProps): JSX.Element {
+function Cities({placesCount, cards}: CitiesProps): JSX.Element {
   return (
     <div className='cities'>
       <div className='cities__places-container container'>
@@ -27,11 +29,7 @@ function Cities({placesCount}: CitiesProps): JSX.Element {
             </ul>
           </form>
           <div className='cities__places-list places__list tabs__content'>
-            <PlaceCard />
-            <PlaceCard />
-            <PlaceCard />
-            <PlaceCard />
-            <PlaceCard />
+            <PlaceCardsList cards={cards} />
           </div>
         </section>
         <div className='cities__right-section'>
