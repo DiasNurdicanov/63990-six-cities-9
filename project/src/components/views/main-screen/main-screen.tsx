@@ -1,11 +1,11 @@
 import Locations from '../../common/locations/locations';
 import Cities from '../../common/cities/cities';
 import Layout from '../../common/layout/layout';
-import { PlaceCardProps } from '../../../types/place-card';
+import {Hotel} from '../../../types/hotel';
 
 type MainScreenProps = {
   placesCount: number;
-  cards: PlaceCardProps[];
+  cards: Hotel[];
 }
 
 function MainScreen({placesCount, cards}: MainScreenProps): JSX.Element {

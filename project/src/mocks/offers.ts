@@ -1,4 +1,6 @@
-export const OffersData = [
+import {Hotel} from '../types/hotel';
+
+export const Offers: Hotel[] = [
   {
     id: 1,
     title: 'Beautiful &amp; luxurious apartment at great location',
@@ -8,6 +10,9 @@ export const OffersData = [
     image: 'img/apartment-01.jpg',
     isFavorite: false,
     isPremium: true,
+    city: {
+      name: 'Amsterdam',
+    },
   },
   {
     id: 2,
@@ -18,6 +23,9 @@ export const OffersData = [
     image: 'img/room.jpg',
     isFavorite: true,
     isPremium: false,
+    city: {
+      name: 'Amsterdam',
+    },
   },
   {
     id: 3,
@@ -28,6 +36,9 @@ export const OffersData = [
     image: 'img/apartment-02.jpg',
     isFavorite: false,
     isPremium: false,
+    city: {
+      name: 'Amsterdam',
+    },
   },
   {
     id: 4,
@@ -38,5 +49,8 @@ export const OffersData = [
     image: 'img/apartment-03.jpg',
     isFavorite: false,
     isPremium: true,
+    city: {
+      name: 'Amsterdam',
+    },
   },
 ];

@@ -1,9 +1,9 @@
-import { PlaceCardProps } from '../../../types/place-card';
+import {Hotel} from '../../../types/hotel';
 import PlaceCardsList from '../place-cards-list/place-cards-list';
 
 type CitiesProps = {
   placesCount: number;
-  cards: PlaceCardProps[];
+  cards: Hotel[];
 }
 
 function Cities({placesCount, cards}: CitiesProps): JSX.Element {

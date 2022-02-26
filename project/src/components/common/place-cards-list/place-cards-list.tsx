@@ -1,9 +1,9 @@
 import { useState, MouseEvent } from 'react';
-import { PlaceCardProps } from '../../../types/place-card';
+import { Hotel } from '../../../types/hotel';
 import PlaceCard from '../place-card/place-card';
 
 type PlaceCardsListProps = {
-  cards: PlaceCardProps[];
+  cards: Hotel[];
 }
 
 function PlaceCardsList({cards}: PlaceCardsListProps): JSX.Element {
@@ -13,7 +13,16 @@ function PlaceCardsList({cards}: PlaceCardsListProps): JSX.Element {
 
   return (
     <>
-      {cards.map((card) => <PlaceCard key={card.id} onCardHover={onCardHover} {...card} />)}
+      {cards.map((card) => (
+        <PlaceCard
+          key={card.id}
+          onCardHover={onCardHover}
+          hotel={card}
+          wrapClass='cities__place-card'
+          imageClass='cities__image-wrapper'
+          imageSize='medium'
+        />
+      ))}
     </>
   );
 }

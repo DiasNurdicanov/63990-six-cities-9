@@ -1,10 +1,13 @@
 import { useState, ChangeEvent } from 'react';
+import RatingStarItem from '../common/rating-star-item/rating-star-item';
+
+const RATING_STAR_COUNT = 5;
 
 function AddReviewForm(): JSX.Element {
-  const [text, setText] = useState('');
+  const [review, setReview] = useState('');
   const [rating, setRating] = useState('');
 
-  const onTextareaChange = (evt: ChangeEvent<HTMLTextAreaElement>) => setText(evt.target.value);
+  const onTextareaChange = (evt: ChangeEvent<HTMLTextAreaElement>) => setReview(evt.target.value);
   const onRatingChange = (evt: ChangeEvent<HTMLInputElement>) => setRating(evt.target.value);
 
   return (
@@ -12,27 +15,13 @@ function AddReviewForm(): JSX.Element {
       <label className='reviews__label form__label' htmlFor='review'>Your review</label>
       <div className='reviews__rating-form form__rating'>
         {
-          Array.from({length: 5}, (el, i) => ++i).reverse().map((i) => (
-            <>
-              <input
-                className='form__rating-input visually-hidden'
-                name='rating'
-                value={i}
-                id={`${i}-stars`}
-                type='radio'
-                checked={i === Number(rating)}
-                onChange={onRatingChange}
-              />
-              <label
-                htmlFor={`${i}-stars`}
-                className='reviews__rating-label form__rating-label'
-                title='perfect'
-              >
-                <svg className='form__star-image' width='37' height='33'>
-                  <use xlinkHref='#icon-star'></use>
-                </svg>
-              </label>
-            </>
+          Array.from({length: RATING_STAR_COUNT}, (el, i) => ++i).reverse().map((i) => (
+            <RatingStarItem
+              key={i}
+              id={i}
+              changeHandler={onRatingChange}
+              isChecked={i === Number(rating)}
+            />
           ))
         }
       </div>
@@ -41,11 +30,9 @@ function AddReviewForm(): JSX.Element {
         id='review'
         name='review'
         placeholder='Tell how was your stay, what you like and what can be improved'
-        value={text}
+        value={review}
         onChange={onTextareaChange}
-      >
-      </textarea>
-
+      />
       <div className='reviews__button-wrapper'>
         <p className='reviews__help'>
           To submit review please make sure to set <span className='reviews__star'>rating</span> and describe your stay with at least <b className='reviews__text-amount'>50 characters</b>.

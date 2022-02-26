@@ -1,4 +1,6 @@
-export const FavoritesData = [
+import {Hotel} from '../types/hotel';
+
+export const Favorites: Hotel[] = [
   {
     id: 1,
     title: 'Beautiful &amp; luxurious apartment at great location',
@@ -8,7 +10,9 @@ export const FavoritesData = [
     image: 'img/apartment-01.jpg',
     isFavorite: true,
     isPremium: true,
-    city: 'Amsterdam',
+    city: {
+      name: 'Amsterdam',
+    },
   },
   {
     id: 2,
@@ -19,7 +23,9 @@ export const FavoritesData = [
     image: 'img/room.jpg',
     isFavorite: true,
     isPremium: false,
-    city: 'Amsterdam',
+    city: {
+      name: 'Amsterdam',
+    },
   },
   {
     id: 3,
@@ -30,6 +36,8 @@ export const FavoritesData = [
     image: 'img/apartment-02.jpg',
     isFavorite: true,
     isPremium: false,
-    city: 'Cologne',
+    city: {
+      name: 'Cologne',
+    },
   },
 ];
