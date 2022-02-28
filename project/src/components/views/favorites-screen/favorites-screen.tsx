@@ -1,27 +1,33 @@
 import {Hotel} from '../../../types/hotel';
 import Layout from '../../common/layout/layout';
 import PlaceCard from '../../common/place-card/place-card';
+import {Cities} from '../../../const/cities';
 
 type FavoritesScreenProps = {
   cards: Hotel[];
 }
 
-type Citys = {
-  [key: string]: Hotel[]
+type Hotels = {
+  [keyof in Cities]: Hotel[]
 }
 
 function FavoritesScreen({cards}: FavoritesScreenProps): JSX.Element {
-  const citys = cards.reduce((acc, current) => {
-    const city = current.city.name;
+  const hotels: Hotels = {
+    [Cities.Paris]: [],
+    [Cities.Cologne]: [],
+    [Cities.Brussels]: [],
+    [Cities.Amsterdam]: [],
+    [Cities.Hamburg]: [],
+    [Cities.Dusseldorf]: [],
+  };
 
-    if (acc[city]) {
-      acc[city].push(current);
-    } else {
-      acc[city] = [current];
-    }
+  const cities = cards.reduce((acc, current) => {
+    const {name: currentCity} = current.city;
+
+    acc[currentCity as keyof typeof Cities].push(current);
 
     return acc;
-  }, {} as Citys);
+  }, hotels);
 
   return (
     <Layout
@@ -32,18 +38,18 @@ function FavoritesScreen({cards}: FavoritesScreenProps): JSX.Element {
         <section className='favorites'>
           <h1 className='favorites__title'>Saved listing</h1>
           <ul className='favorites__list'>
-            {Object.keys(citys).map((city) => (
-              <li key={city} className='favorites__locations-items'>
+            {Object.values(Cities).map((hotel) => cities[hotel].length ? (
+              <li key={hotel} className='favorites__locations-items'>
                 <div className='favorites__locations locations locations--current'>
                   <div className='locations__item'>
                     <a className='locations__item-link' href='#!'>
-                      <span>{city}</span>
+                      <span>{hotel}</span>
                     </a>
                   </div>
                 </div>
 
                 <div className='favorites__places'>
-                  {citys[city].map((card) => (
+                  {cities[hotel].map((card) => (
                     <PlaceCard
                       key={card.id}
                       hotel={card}
@@ -54,7 +60,7 @@ function FavoritesScreen({cards}: FavoritesScreenProps): JSX.Element {
                     />))}
                 </div>
               </li>
-            ))}
+            ) : null)}
           </ul>
         </section>
       </div>

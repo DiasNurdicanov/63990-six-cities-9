@@ -22,7 +22,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
       id,
       title,
       rating,
-      image,
+      previewImage,
       price,
       type,
       isFavorite,
@@ -47,7 +47,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
         <a href='#!'>
           <img
             className='place-card__image'
-            src={image}
+            src={previewImage}
             width={IMAGE_SIZES[imageSize].width}
             height={IMAGE_SIZES[imageSize].height}
             alt='Place'
