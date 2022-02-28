@@ -1,3 +1,5 @@
+import {Cities} from '../const/cities';
+
 type Location = {
   latitude: number;
   longitude: number;
@@ -13,7 +15,7 @@ type Host = {
 
 type City = {
   location: Location,
-  name: string;
+  name: keyof typeof Cities;
 }
 
 export type Hotel = {

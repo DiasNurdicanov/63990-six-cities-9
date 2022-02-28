@@ -24,7 +24,7 @@ function FavoritesScreen({cards}: FavoritesScreenProps): JSX.Element {
   const cities = cards.reduce((acc, current) => {
     const {name: currentCity} = current.city;
 
-    acc[currentCity as keyof typeof Cities].push(current);
+    acc[currentCity].push(current);
 
     return acc;
   }, hotels);
