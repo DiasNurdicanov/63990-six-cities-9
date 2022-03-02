@@ -1,5 +1,5 @@
 import { AuthorizationStatus } from '../../../const/auth-status';
-import AddReviewForm from '../../add-review-form/add-review-form';
+import AddReviewForm from '../add-review-form/add-review-form';
 
 type PropertyProps = {
   authStatus?: AuthorizationStatus,
