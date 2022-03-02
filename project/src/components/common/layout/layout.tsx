@@ -3,6 +3,7 @@ import Header from '../header/header';
 import Footer from '../footer/footer';
 import { AuthorizationStatus } from '../../../const/auth-status';
 import { RouteProps } from 'react-router-dom';
+import classNames from 'classnames';
 
 type LayoutProps = RouteProps & {
   authStatus?: AuthorizationStatus;
@@ -27,10 +28,10 @@ function Layout(props: LayoutProps): JSX.Element {
     <>
       <SvgSprite />
 
-      <div className={`page ${pageClassName}`}>
+      <div className={classNames('page', pageClassName)}>
         <Header authStatus={authStatus} showNav={showNav} />
 
-        <main className={`page__main ${mainElementClassName}`}>
+        <main className={classNames('page__main', mainElementClassName)}>
           {children}
         </main>
 

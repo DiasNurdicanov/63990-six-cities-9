@@ -9,26 +9,21 @@ import LoginScreen from '../views/login-screen/login-screen';
 import PropertyScreen from '../views/property-screen/property-screen';
 import NotFoundScreen from '../views/not-found-screen/not-found-screen';
 import PrivateRoute from '../common/private-route/private-route';
-import Layout from '../common/layout/layout';
+import {Hotel} from '../../types/hotel';
+import {Favorites} from '../../mocks/favorites';
 
 type AppProps = {
   placesCount: number;
+  cards: Hotel[];
 }
 
-function App({placesCount}: AppProps): JSX.Element {
+function App({placesCount, cards}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={
-            <Layout
-              pageClassName='page--gray page--main'
-              mainElementClassName='page__main--index'
-            >
-              <MainScreen placesCount={placesCount} />
-            </Layout>
-          }
+          element={<MainScreen placesCount={placesCount} cards={cards} />}
         />
 
         <Route
@@ -40,7 +35,7 @@ function App({placesCount}: AppProps): JSX.Element {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute status={AuthorizationStatus.Auth}>
-              <FavoritesScreen />
+              <FavoritesScreen cards={Favorites} />
             </PrivateRoute>
           }
         />
