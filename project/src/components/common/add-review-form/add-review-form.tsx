@@ -1,5 +1,5 @@
 import { useState, ChangeEvent } from 'react';
-import RatingStarItem from '../common/rating-star-item/rating-star-item';
+import RatingStarItem from '../rating-star-item/rating-star-item';
 
 const RATING_STAR_COUNT = 5;
 
