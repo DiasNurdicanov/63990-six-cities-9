@@ -11,19 +11,29 @@ import NotFoundScreen from '../views/not-found-screen/not-found-screen';
 import PrivateRoute from '../common/private-route/private-route';
 import {Hotel} from '../../types/hotel';
 import {Favorites} from '../../mocks/favorites';
+import {City} from '../../types/hotel';
+import {Review} from '../../types/review';
 
 type AppProps = {
   placesCount: number;
   cards: Hotel[];
+  city: City;
+  reviews: Review[];
 }
 
-function App({placesCount, cards}: AppProps): JSX.Element {
+function App({placesCount, cards, city, reviews}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainScreen placesCount={placesCount} cards={cards} />}
+          element={
+            <MainScreen
+              placesCount={placesCount}
+              cards={cards}
+              city={city}
+            />
+          }
         />
 
         <Route
@@ -42,7 +52,13 @@ function App({placesCount, cards}: AppProps): JSX.Element {
 
         <Route
           path={AppRoute.Property}
-          element={<PropertyScreen />}
+          element={
+            <PropertyScreen
+              reviews={reviews}
+              cards={Favorites}
+              city={city}
+            />
+          }
         />
 
         <Route

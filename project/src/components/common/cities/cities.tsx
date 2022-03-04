@@ -1,13 +1,15 @@
 import {Hotel} from '../../../types/hotel';
 import PlaceCardsList from '../place-cards-list/place-cards-list';
 import Map from '../map/map';
+import {City} from '../../../types/hotel';
 
 type CitiesProps = {
   placesCount: number;
   cards: Hotel[];
+  city: City;
 }
 
-function Cities({placesCount, cards}: CitiesProps): JSX.Element {
+function Cities({placesCount, cards, city}: CitiesProps): JSX.Element {
   return (
     <div className='cities'>
       <div className='cities__places-container container'>
@@ -35,7 +37,7 @@ function Cities({placesCount, cards}: CitiesProps): JSX.Element {
         </section>
         <div className='cities__right-section'>
           <section className='cities__map map'>
-            <Map hotels={cards} />
+            <Map hotels={cards} city={city} />
           </section>
         </div>
       </div>

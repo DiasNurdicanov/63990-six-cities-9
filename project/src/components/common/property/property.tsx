@@ -1,11 +1,19 @@
 import { AuthorizationStatus } from '../../../const/auth-status';
 import AddReviewForm from '../add-review-form/add-review-form';
+import {Review} from '../../../types/review';
+import ReviewList from '../review-list/review-list';
+import {Hotel} from '../../../types/hotel';
+import {City} from '../../../types/hotel';
+import Map from '../map/map';
 
 type PropertyProps = {
-  authStatus?: AuthorizationStatus,
+  authStatus?: AuthorizationStatus;
+  reviews: Review[];
+  cards: Hotel[];
+  city: City;
 }
 
-function Property({authStatus = AuthorizationStatus.Auth}: PropertyProps): JSX.Element {
+function Property({authStatus = AuthorizationStatus.Auth, reviews, cards, city}: PropertyProps): JSX.Element {
   const isAuth = authStatus === AuthorizationStatus.Auth;
 
   return (
@@ -158,42 +166,17 @@ function Property({authStatus = AuthorizationStatus.Auth}: PropertyProps): JSX.E
             </div>
           </div>
           <section className='property__reviews reviews'>
-            <h2 className='reviews__title'>Reviews &middot; <span className='reviews__amount'>1</span></h2>
-            <ul className='reviews__list'>
-              <li className='reviews__item'>
-                <div className='reviews__user user'>
-                  <div className='reviews__avatar-wrapper user__avatar-wrapper'>
-                    <img
-                      className='reviews__avatar user__avatar'
-                      src='img/avatar-max.jpg'
-                      width='54'
-                      height='54'
-                      alt='Reviews avatar'
-                    />
-                  </div>
-                  <span className='reviews__user-name'>
-                    Max
-                  </span>
-                </div>
-                <div className='reviews__info'>
-                  <div className='reviews__rating rating'>
-                    <div className='reviews__stars rating__stars'>
-                      <span style={{width: '80%'}}></span>
-                      <span className='visually-hidden'>Rating</span>
-                    </div>
-                  </div>
-                  <p className='reviews__text'>
-                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                  </p>
-                  <time className='reviews__time' dateTime='2019-04-24'>April 2019</time>
-                </div>
-              </li>
-            </ul>
+            <h2 className='reviews__title'>Reviews &middot; <span className='reviews__amount'>{reviews.length}</span></h2>
+
+            <ReviewList items={reviews} />
+
             {isAuth && <AddReviewForm />}
           </section>
         </div>
       </div>
-      <section className='property__map map'></section>
+      <section className='property__map map'>
+        <Map hotels={cards} city={city} />
+      </section>
     </section>
   );
 }
