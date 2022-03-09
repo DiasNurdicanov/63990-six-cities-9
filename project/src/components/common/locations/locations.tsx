@@ -1,10 +1,11 @@
-import {Cities, CitiesCoords} from '../../../const/cities';
+import {Cities} from '../../../const/cities';
 import {useAppDispatch, useAppSelector} from '../../../hooks/';
 import classNames from 'classnames';
 import {setCity} from '../../../store/action';
+import {CitiesCoordsType} from '../../../types/hotel';
 
 type LocationProps = {
-  cities: typeof Cities
+  cities: CitiesCoordsType
 }
 
 function Locations({cities}: LocationProps): JSX.Element {
@@ -12,8 +13,8 @@ function Locations({cities}: LocationProps): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const onClick = (newCity: string) =>  {
-    const newActiveCity = CitiesCoords.find((el) => el.name === newCity);
+  const onClick = (newCity: Cities) =>  {
+    const newActiveCity = cities[newCity];
 
     if (newActiveCity) {
       dispatch(setCity(newActiveCity));
@@ -23,7 +24,7 @@ function Locations({cities}: LocationProps): JSX.Element {
   return (
     <section className='locations container'>
       <ul className='locations__list tabs__list'>
-        {Object.keys(cities).map((citiesItem) => (
+        {Object.values(Cities).map((citiesItem: Cities) => (
           <li key={citiesItem} className='locations__item'>
             <a className={
               classNames(

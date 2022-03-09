@@ -36,3 +36,12 @@ export type Hotel = {
   previewImage: string;
   bedrooms: number;
 }
+
+export type CitiesCoordsType = {
+  [Cities.Paris]: City,
+  [Cities.Amsterdam]: City,
+  [Cities.Brussels]: City,
+  [Cities.Cologne]: City,
+  [Cities.Dusseldorf]: City,
+  [Cities.Hamburg]: City
+}

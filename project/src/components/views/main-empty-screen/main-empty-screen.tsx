@@ -1,6 +1,6 @@
 import Layout from '../../common/layout/layout';
 import Locations from '../../common/locations/locations';
-import {Cities} from '../../../const/cities';
+import {CitiesCoords} from '../../../const/cities';
 
 function MainScreen(): JSX.Element {
   return (
@@ -11,7 +11,7 @@ function MainScreen(): JSX.Element {
       <>
         <h1 className='visually-hidden'>Cities</h1>
         <div className='tabs'>
-          <Locations cities={Cities} />
+          <Locations cities={CitiesCoords} />
         </div>
         <div className='cities'>
           <div className='cities__places-container cities__places-container--empty container'>

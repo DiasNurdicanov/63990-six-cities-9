@@ -1,10 +1,11 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {setCity, setHotels} from './action';
-import { Offers } from '../mocks/offers';
-import {CitiesCoords} from '../const/cities'
+import {Offers} from '../mocks/offers';
+import {CitiesCoords} from '../const/cities';
+import {Cities} from '../const/cities';
 
 const initialState = {
-  city: CitiesCoords[0],
+  city: CitiesCoords[Cities.Paris],
   hotels: [...Offers],
 };
 
