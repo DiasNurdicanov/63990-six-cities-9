@@ -1,37 +1,47 @@
-function Locations(): JSX.Element {
+import {Cities} from '../../../const/cities';
+import {useAppDispatch, useAppSelector} from '../../../hooks/';
+import classNames from 'classnames';
+import {setCity} from '../../../store/action';
+import {CitiesCoordsType} from '../../../types/hotel';
+
+type LocationProps = {
+  cities: CitiesCoordsType
+}
+
+function Locations({cities}: LocationProps): JSX.Element {
+  const {city} = useAppSelector((state) => state);
+
+  const dispatch = useAppDispatch();
+
+  const onClick = (newCity: Cities) =>  {
+    const newActiveCity = cities[newCity];
+
+    if (newActiveCity) {
+      dispatch(setCity(newActiveCity));
+    }
+  };
+
   return (
     <section className='locations container'>
       <ul className='locations__list tabs__list'>
-        <li className='locations__item'>
-          <a className='locations__item-link tabs__item' href='#!'>
-            <span>Paris</span>
-          </a>
-        </li>
-        <li className='locations__item'>
-          <a className='locations__item-link tabs__item' href='#!'>
-            <span>Cologne</span>
-          </a>
-        </li>
-        <li className='locations__item'>
-          <a className='locations__item-link tabs__item' href='#!'>
-            <span>Brussels</span>
-          </a>
-        </li>
-        <li className='locations__item'>
-          <a className='locations__item-link tabs__item tabs__item--active' href='#!'>
-            <span>Amsterdam</span>
-          </a>
-        </li>
-        <li className='locations__item'>
-          <a className='locations__item-link tabs__item' href='#!'>
-            <span>Hamburg</span>
-          </a>
-        </li>
-        <li className='locations__item'>
-          <a className='locations__item-link tabs__item' href='#!'>
-            <span>Dusseldorf</span>
-          </a>
-        </li>
+        {Object.values(Cities).map((citiesItem: Cities) => (
+          <li key={citiesItem} className='locations__item'>
+            <a className={
+              classNames(
+                'locations__item-link',
+                'tabs__item',
+                {
+                  'tabs__item--active': city.name === citiesItem,
+                },
+              )
+            }
+            onClick={() => onClick(citiesItem)}
+            href='#!'
+            >
+              <span>{citiesItem}</span>
+            </a>
+          </li>
+        ))}
       </ul>
     </section>
   );

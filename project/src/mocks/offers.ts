@@ -9,7 +9,7 @@ export const Offers: Hotel[] = [
         'longitude': 4.895168,
         'zoom': 10,
       },
-      'name': 'Amsterdam',
+      'name': 'Paris',
     },
     'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     'goods': [

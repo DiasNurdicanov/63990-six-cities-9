@@ -1,21 +1,17 @@
-import {Hotel} from '../../../types/hotel';
 import PlaceCardsList from '../place-cards-list/place-cards-list';
 import Map from '../map/map';
-import {City} from '../../../types/hotel';
+import {useAppSelector} from '../../../hooks/';
 
-type CitiesProps = {
-  placesCount: number;
-  cards: Hotel[];
-  city: City;
-}
+function Cities(): JSX.Element {
+  const {city, hotels} = useAppSelector((state) => state);
+  const cards = hotels.filter((hotel) => hotel.city.name === city.name);
 
-function Cities({placesCount, cards, city}: CitiesProps): JSX.Element {
   return (
     <div className='cities'>
       <div className='cities__places-container container'>
         <section className='cities__places places'>
           <h2 className='visually-hidden'>Places</h2>
-          <b className='places__found'>{placesCount} places to stay in Amsterdam</b>
+          <b className='places__found'>{cards.length} places to stay in {city.name}</b>
           <form className='places__sorting' action='#' method='get'>
             <span className='places__sorting-caption'>Sort by</span>
             <span className='places__sorting-type' tabIndex={0}>

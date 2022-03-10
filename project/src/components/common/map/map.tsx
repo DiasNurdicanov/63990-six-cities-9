@@ -1,4 +1,4 @@
-import {useRef, useEffect} from 'react';
+import {useRef, useEffect, useState} from 'react';
 import {Icon, Marker, PointExpression} from 'leaflet';
 
 import {Hotel} from '../../../types/hotel';
@@ -27,9 +27,12 @@ function Map(props: MapProps): JSX.Element {
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
+  const [markers] = useState<Marker[]>([]);
 
   useEffect(() => {
     if (map) {
+      markers.forEach((marker) => map.removeLayer(marker));
+
       hotels.forEach((hotel) => {
         const marker = new Marker({
           lat: hotel.location.latitude,
@@ -41,9 +44,11 @@ function Map(props: MapProps): JSX.Element {
             defaultCustomIcon,
           )
           .addTo(map);
+
+        markers.push(marker);
       });
     }
-  }, [map, hotels]);
+  }, [map, hotels, markers]);
 
   return <div style={{height: '100%'}} ref={mapRef}></div>;
 }
