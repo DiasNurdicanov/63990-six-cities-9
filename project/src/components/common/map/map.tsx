@@ -8,12 +8,14 @@ import {City} from '../../../types/hotel';
 import 'leaflet/dist/leaflet.css';
 
 const URL_MARKER_DEFAULT = './img/pin.svg';
+const URL_MARKER_CURRENT = './img/pin-active.svg';
 const ICON_SIZE: PointExpression = [27, 39];
 const ICON_ANCHOR: PointExpression = [14, 39];
 
 type MapProps = {
   hotels: Hotel[];
   city: City;
+  activeMarkerIndex?: number;
 };
 
 const defaultCustomIcon = new Icon({
@@ -22,8 +24,14 @@ const defaultCustomIcon = new Icon({
   iconAnchor: ICON_ANCHOR,
 });
 
+const currentCustomIcon = new Icon({
+  iconUrl: URL_MARKER_CURRENT,
+  iiconSize: ICON_SIZE,
+  iconAnchor: ICON_ANCHOR,
+});
+
 function Map(props: MapProps): JSX.Element {
-  const {hotels, city} = props;
+  const {hotels, city, activeMarkerIndex} = props;
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
@@ -41,14 +49,16 @@ function Map(props: MapProps): JSX.Element {
 
         marker
           .setIcon(
-            defaultCustomIcon,
+            activeMarkerIndex !== undefined && activeMarkerIndex === hotel.id
+              ? currentCustomIcon
+              : defaultCustomIcon,
           )
           .addTo(map);
 
         markers.push(marker);
       });
     }
-  }, [map, hotels, markers]);
+  }, [map, hotels, markers, activeMarkerIndex]);
 
   return <div style={{height: '100%'}} ref={mapRef}></div>;
 }
