@@ -33,7 +33,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
     infoClass = '',
     imageSize,
     onCardHover,
-    onCardHoverReset
+    onCardHoverReset,
   } = props;
 
   return (
