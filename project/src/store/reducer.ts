@@ -3,11 +3,12 @@ import {setCity, setHotels, setSortType} from './action';
 import {Offers} from '../mocks/offers';
 import {CitiesCoords} from '../const/cities';
 import {Cities} from '../const/cities';
+import {SortingType} from '../const/sorting';
 
 const initialState = {
   city: CitiesCoords[Cities.Paris],
   hotels: [...Offers],
-  sortType: 'Popular',
+  sortType: SortingType.Popular,
 };
 
 const reducer = createReducer(initialState, (builder) => {

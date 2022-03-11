@@ -5,17 +5,17 @@ import PlaceCard from '../place-card/place-card';
 type PlaceCardsListProps = {
   cards: Hotel[];
   onCardHover: (e: MouseEvent<HTMLDivElement>, id: number) => void;
-  resetActiveCard: (e: MouseEvent<HTMLDivElement>) => void;
+  onCardHoverReset: (e: MouseEvent<HTMLDivElement>) => void;
 }
 
-function PlaceCardsList({cards, onCardHover, resetActiveCard}: PlaceCardsListProps): JSX.Element {
+function PlaceCardsList({cards, onCardHover, onCardHoverReset}: PlaceCardsListProps): JSX.Element {
   return (
     <>
       {cards.map((card) => (
         <PlaceCard
           key={card.id}
           onCardHover={onCardHover}
-          onCardHoverReset={resetActiveCard}
+          onCardHoverReset={onCardHoverReset}
           hotel={card}
           wrapClass='cities__place-card'
           imageClass='cities__image-wrapper'

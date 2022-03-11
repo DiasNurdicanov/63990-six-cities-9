@@ -1,15 +1,14 @@
-import {SortingTypes} from '../../../const/sorting';
-import {useAppDispatch, useAppSelector} from '../../../hooks/';
 import classNames from 'classnames';
+import {SortingType} from '../../../const/sorting';
+import {useAppDispatch, useAppSelector} from '../../../hooks/';
 import {setSortType} from '../../../store/action';
-
 
 function Sorting() {
   const {sortType} = useAppSelector((state) => state);
 
   const dispatch = useAppDispatch();
 
-  const onClick = (newSortType: string) =>  {
+  const handleSetSortType = (newSortType: SortingType) =>  {
     dispatch(setSortType(newSortType));
   };
 
@@ -23,7 +22,7 @@ function Sorting() {
         </svg>
       </span>
       <ul className='places__options places__options--custom places__options--opened'>
-        {Object.keys(SortingTypes).map((type) => (
+        {Object.values(SortingType).map((type) => (
           <li
             key={type}
             className={
@@ -32,9 +31,9 @@ function Sorting() {
               })
             }
             tabIndex={0}
-            onClick={() => onClick(type)}
+            onClick={() => handleSetSortType(type)}
           >
-            {SortingTypes[type].name}
+            {type}
           </li>
         ))}
       </ul>

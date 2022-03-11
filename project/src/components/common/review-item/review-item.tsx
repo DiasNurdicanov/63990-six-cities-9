@@ -1,6 +1,7 @@
+import dayjs from 'dayjs';
+
 import { RATING_STAR_PERCENT } from '../../../const/common';
 import { Review } from '../../../types/review';
-import dayjs from 'dayjs';
 
 type ReviewProps = {
   review: Review;

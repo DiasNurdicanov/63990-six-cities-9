@@ -8,26 +8,26 @@ export enum SortingType {
 }
 
 type SortingTypesType = {
-  [key: string]: {
+  [key in SortingType]: {
     name: SortingType,
     fn: ((a: Hotel, b: Hotel) => number)
   }
 }
 
 export const SortingTypes: SortingTypesType = {
-  Popular: {
+  [SortingType.Popular]: {
     name: SortingType.Popular,
     fn: (a: Hotel, b: Hotel) => 0,
   },
-  PriceAsc: {
+  [SortingType.PriceAsc]: {
     name: SortingType.PriceAsc,
     fn: (a: Hotel, b: Hotel) => a.price - b.price,
   },
-  PriceDesc: {
+  [SortingType.PriceDesc]: {
     name: SortingType.PriceDesc,
     fn: (a: Hotel, b: Hotel) => b.price - a.price,
   },
-  Rating: {
+  [SortingType.Rating]: {
     name: SortingType.Rating,
     fn: (a: Hotel, b: Hotel) => b.rating - a.rating,
   },

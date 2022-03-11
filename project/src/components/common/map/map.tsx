@@ -2,8 +2,8 @@ import {useRef, useEffect, useState} from 'react';
 import {Icon, Marker, PointExpression} from 'leaflet';
 
 import {Hotel} from '../../../types/hotel';
-import useMap from '../../../hooks/useMap';
 import {City} from '../../../types/hotel';
+import useMap from '../../../hooks/useMap';
 
 import 'leaflet/dist/leaflet.css';
 

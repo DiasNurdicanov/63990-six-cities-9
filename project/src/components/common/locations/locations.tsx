@@ -1,6 +1,7 @@
 import {Cities} from '../../../const/cities';
 import {useAppDispatch, useAppSelector} from '../../../hooks/';
 import classNames from 'classnames';
+
 import {setCity} from '../../../store/action';
 import {CitiesCoordsType} from '../../../types/hotel';
 
