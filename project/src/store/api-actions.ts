@@ -11,7 +11,6 @@ import {UserData} from '../types/user-data';
 import {Hotel} from '../types/hotel';
 import {errorHandle} from '../services/error-handle';
 import {Review} from '../types/review';
-import {ReviewData} from '../types/review-data';
 import { AddReview } from '../types/add-review';
 
 export const fetchHotelsAction = createAsyncThunk(

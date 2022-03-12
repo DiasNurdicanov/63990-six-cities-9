@@ -30,7 +30,7 @@ function Property(): JSX.Element | null {
     host,
     description,
     city,
-    id
+    id,
   } = hotel;
 
   const isAuth = authorizationStatus === AuthorizationStatus.Auth;
