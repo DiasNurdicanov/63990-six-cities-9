@@ -1,12 +1,11 @@
 import { RouteProps } from 'react-router-dom';
 import classNames from 'classnames';
-import { AuthorizationStatus } from '../../../const/auth-status';
 import SvgSprite from '../svg-sprite/svg-sprite';
 import Header from '../header/header';
 import Footer from '../footer/footer';
+import {useAppSelector} from '../../../hooks';
 
 type LayoutProps = RouteProps & {
-  authStatus?: AuthorizationStatus;
   showNav?: boolean;
   pageClassName?: string;
   mainElementClassName?: string;
@@ -15,8 +14,9 @@ type LayoutProps = RouteProps & {
 }
 
 function Layout(props: LayoutProps): JSX.Element {
+  const {authorizationStatus} = useAppSelector((state) => state);
+
   const {
-    authStatus = AuthorizationStatus.Auth,
     showNav = true,
     pageClassName = '',
     mainElementClassName = '',
@@ -29,7 +29,7 @@ function Layout(props: LayoutProps): JSX.Element {
       <SvgSprite />
 
       <div className={classNames('page', pageClassName)}>
-        <Header authStatus={authStatus} showNav={showNav} />
+        <Header authStatus={authorizationStatus} showNav={showNav} />
 
         <main className={classNames('page__main', mainElementClassName)}>
           {children}

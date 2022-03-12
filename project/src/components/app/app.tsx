@@ -1,17 +1,19 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 
 import {AppRoute} from '../../const/routes';
-import { AuthorizationStatus } from '../../const/auth-status';
-
 import MainScreen from '../views/main-screen/main-screen';
 import FavoritesScreen from '../views/favorites-screen/favorites-screen';
 import LoginScreen from '../views/login-screen/login-screen';
 import PropertyScreen from '../views/property-screen/property-screen';
 import NotFoundScreen from '../views/not-found-screen/not-found-screen';
+import LoadingScreen from '../views/loading-screen/loading-screen';
 import PrivateRoute from '../common/private-route/private-route';
 import {Favorites} from '../../mocks/favorites';
 import {City} from '../../types/hotel';
 import {Review} from '../../types/review';
+import {useAppSelector} from '../../hooks';
+import HistoryRouter from '../common/history-route/history-route';
+import browserHistory from '../../browser-history';
 
 type AppProps = {
   city: City;
@@ -19,8 +21,16 @@ type AppProps = {
 }
 
 function App({city, reviews}: AppProps): JSX.Element {
+  const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
+
+  if (!isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Main}
@@ -37,7 +47,7 @@ function App({city, reviews}: AppProps): JSX.Element {
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute status={AuthorizationStatus.Auth}>
+            <PrivateRoute status={authorizationStatus}>
               <FavoritesScreen cards={Favorites} />
             </PrivateRoute>
           }
@@ -60,7 +70,7 @@ function App({city, reviews}: AppProps): JSX.Element {
         />
 
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 
