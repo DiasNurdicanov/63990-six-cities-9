@@ -6,28 +6,19 @@ import FavoritesScreen from '../views/favorites-screen/favorites-screen';
 import LoginScreen from '../views/login-screen/login-screen';
 import PropertyScreen from '../views/property-screen/property-screen';
 import NotFoundScreen from '../views/not-found-screen/not-found-screen';
-import LoadingScreen from '../views/loading-screen/loading-screen';
 import PrivateRoute from '../common/private-route/private-route';
 import {Favorites} from '../../mocks/favorites';
 import {City} from '../../types/hotel';
-import {Review} from '../../types/review';
 import {useAppSelector} from '../../hooks';
 import HistoryRouter from '../common/history-route/history-route';
 import browserHistory from '../../browser-history';
 
 type AppProps = {
   city: City;
-  reviews: Review[];
 }
 
-function App({city, reviews}: AppProps): JSX.Element {
-  const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
-
-  if (!isDataLoaded) {
-    return (
-      <LoadingScreen />
-    );
-  }
+function App({city}: AppProps): JSX.Element {
+  const {authorizationStatus} = useAppSelector((state) => state);
 
   return (
     <HistoryRouter history={browserHistory}>
@@ -56,11 +47,7 @@ function App({city, reviews}: AppProps): JSX.Element {
         <Route
           path={AppRoute.Property}
           element={
-            <PropertyScreen
-              reviews={reviews}
-              cards={Favorites}
-              city={city}
-            />
+            <PropertyScreen />
           }
         />
 

@@ -1,11 +1,12 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {setCity, setHotels, setSortType, loadHotels, requireAuthorization} from './action';
+import {setCity, setHotels, setSortType, loadHotels, requireAuthorization, loadHotelById, loadReviews, loadNearbyHotels} from './action';
 import {CitiesCoords} from '../const/cities';
 import {Cities} from '../const/cities';
 import {SortingType} from '../const/sorting';
 import {AuthorizationStatus} from '../const/auth-status';
 
 import {City, Hotel} from '../types/hotel';
+import {Review} from '../types/review';
 
 type InitalState = {
   city: City;
@@ -13,6 +14,9 @@ type InitalState = {
   sortType: SortingType;
   authorizationStatus: AuthorizationStatus;
   isDataLoaded: boolean;
+  hotel: Hotel | null;
+  reviews: Review[];
+  nearbyHotels: Hotel[];
 }
 
 const initialState: InitalState = {
@@ -21,6 +25,9 @@ const initialState: InitalState = {
   sortType: SortingType.Popular,
   authorizationStatus: AuthorizationStatus.Unknown,
   isDataLoaded: false,
+  hotel: null,
+  reviews: [],
+  nearbyHotels: [],
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -40,6 +47,18 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(loadHotelById, (state, action) => {
+      state.hotel = action.payload;
+      state.isDataLoaded = true;
+    })
+    .addCase(loadReviews, (state, action) => {
+      state.reviews = action.payload;
+      state.isDataLoaded = true;
+    })
+    .addCase(loadNearbyHotels, (state, action) => {
+      state.nearbyHotels = action.payload;
+      state.isDataLoaded = true;
     });
 });
 
