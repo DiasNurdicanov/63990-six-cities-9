@@ -1,9 +1,9 @@
+import { RouteProps } from 'react-router-dom';
+import classNames from 'classnames';
+import { AuthorizationStatus } from '../../../const/auth-status';
 import SvgSprite from '../svg-sprite/svg-sprite';
 import Header from '../header/header';
 import Footer from '../footer/footer';
-import { AuthorizationStatus } from '../../../const/auth-status';
-import { RouteProps } from 'react-router-dom';
-import classNames from 'classnames';
 
 type LayoutProps = RouteProps & {
   authStatus?: AuthorizationStatus;

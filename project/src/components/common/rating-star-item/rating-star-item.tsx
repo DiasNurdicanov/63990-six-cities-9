@@ -2,11 +2,11 @@ import { ChangeEvent } from 'react';
 
 type RatingStarItemProps = {
   id: number;
-  changeHandler: (evt: ChangeEvent<HTMLInputElement>) => void;
+  onChangeHandler: (evt: ChangeEvent<HTMLInputElement>) => void;
   isChecked: boolean;
 };
 
-function RatingStarItem({id, changeHandler, isChecked}: RatingStarItemProps): JSX.Element {
+function RatingStarItem({id, onChangeHandler, isChecked}: RatingStarItemProps): JSX.Element {
   return (
     <>
       <input
@@ -16,7 +16,7 @@ function RatingStarItem({id, changeHandler, isChecked}: RatingStarItemProps): JS
         id={`${id}-stars`}
         type='radio'
         checked={isChecked}
-        onChange={changeHandler}
+        onChange={onChangeHandler}
       />
       <label
         htmlFor={`${id}-stars`}

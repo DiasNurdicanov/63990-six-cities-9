@@ -1,10 +1,11 @@
 import { AuthorizationStatus } from '../../../const/auth-status';
-import AddReviewForm from '../add-review-form/add-review-form';
 import {Review} from '../../../types/review';
-import ReviewList from '../review-list/review-list';
 import {Hotel} from '../../../types/hotel';
 import {City} from '../../../types/hotel';
+
 import Map from '../map/map';
+import AddReviewForm from '../add-review-form/add-review-form';
+import ReviewList from '../review-list/review-list';
 
 type PropertyProps = {
   authStatus?: AuthorizationStatus;

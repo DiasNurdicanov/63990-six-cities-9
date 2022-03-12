@@ -33,10 +33,15 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
     infoClass = '',
     imageSize,
     onCardHover,
+    onCardHoverReset,
   } = props;
 
   return (
-    <article className={classNames('place-card', wrapClass)} onMouseOver={onCardHover ? (e: MouseEvent<HTMLDivElement>) => onCardHover(e, id) : undefined}>
+    <article
+      className={classNames('place-card', wrapClass)}
+      onMouseOver={onCardHover ? (e: MouseEvent<HTMLDivElement>) => onCardHover(e, id) : undefined}
+      onMouseOut={onCardHoverReset ? (e: MouseEvent<HTMLDivElement>) => onCardHoverReset(e) : undefined}
+    >
       {isPremium && (
         <div className='place-card__mark'>
           <span>Premium</span>

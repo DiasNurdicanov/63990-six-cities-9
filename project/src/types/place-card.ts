@@ -7,5 +7,6 @@ export type PlaceCardProps = {
   imageClass: string,
   imageSize: 'small' | 'medium',
   infoClass?: string,
-  onCardHover?: (e: MouseEvent<HTMLDivElement>, id: number) => void
+  onCardHover?: (e: MouseEvent<HTMLDivElement>, id: number) => void,
+  onCardHoverReset?: (e: MouseEvent<HTMLDivElement>) => void,
 }

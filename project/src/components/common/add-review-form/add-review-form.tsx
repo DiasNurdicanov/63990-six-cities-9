@@ -7,8 +7,8 @@ function AddReviewForm(): JSX.Element {
   const [review, setReview] = useState('');
   const [rating, setRating] = useState('');
 
-  const onTextareaChange = (evt: ChangeEvent<HTMLTextAreaElement>) => setReview(evt.target.value);
-  const onRatingChange = (evt: ChangeEvent<HTMLInputElement>) => setRating(evt.target.value);
+  const handleTextareaChange = (evt: ChangeEvent<HTMLTextAreaElement>) => setReview(evt.target.value);
+  const handleRatingChange = (evt: ChangeEvent<HTMLInputElement>) => setRating(evt.target.value);
 
   return (
     <form className='reviews__form form' action='#' method='post'>
@@ -19,7 +19,7 @@ function AddReviewForm(): JSX.Element {
             <RatingStarItem
               key={i}
               id={i}
-              changeHandler={onRatingChange}
+              onChangeHandler={handleRatingChange}
               isChecked={i === Number(rating)}
             />
           ))
@@ -31,7 +31,7 @@ function AddReviewForm(): JSX.Element {
         name='review'
         placeholder='Tell how was your stay, what you like and what can be improved'
         value={review}
-        onChange={onTextareaChange}
+        onChange={handleTextareaChange}
       />
       <div className='reviews__button-wrapper'>
         <p className='reviews__help'>

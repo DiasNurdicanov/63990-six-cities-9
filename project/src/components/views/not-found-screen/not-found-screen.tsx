@@ -1,5 +1,5 @@
-import Layout from '../../common/layout/layout';
 import {Link} from 'react-router-dom';
+import Layout from '../../common/layout/layout';
 
 function NotFoundScreen(): JSX.Element {
   return (
