@@ -1,4 +1,4 @@
-import { ReviewData } from './review-data';
+import {ReviewData} from './review-data';
 
 export type AddReview = {
   hotelId: number;

@@ -9,7 +9,7 @@ import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import browserHistory from './browser-history';
-import { AppRoute } from './const/routes';
+import {AppRoute} from './const/routes';
 
 store.dispatch(checkAuthAction());
 

@@ -11,10 +11,21 @@ import {UserData} from '../types/user-data';
 import {Hotel} from '../types/hotel';
 import {errorHandle} from '../services/error-handle';
 import {Review} from '../types/review';
-import { AddReview } from '../types/add-review';
+import {AddReview} from '../types/add-review';
+
+enum ApiActions {
+  FetchHotels = 'data/fetchHotels',
+  UserCheckAuth = 'user/checkAuth',
+  UserLogin = 'user/login',
+  UserLogout = 'user/logout',
+  PropertyFetchHotel = 'property/fetchHotelById',
+  PropertyFetchReviews = 'property/fetchReviews',
+  PropertyFetchNearbyHotels = 'property/fetchNearbyHotels',
+  PropertyAddReview = 'property/addReview',
+}
 
 export const fetchHotelsAction = createAsyncThunk(
-  'data/fetchHotels',
+  ApiActions.FetchHotels,
   async () => {
     try {
       const {data} = await api.get<Hotel[]>(APIRoute.Hotels);
@@ -26,7 +37,7 @@ export const fetchHotelsAction = createAsyncThunk(
 );
 
 export const checkAuthAction = createAsyncThunk(
-  'user/checkAuth',
+  ApiActions.UserCheckAuth,
   async () => {
     await api.get(APIRoute.Login);
     store.dispatch(requireAuthorization(AuthorizationStatus.Auth));
@@ -34,7 +45,7 @@ export const checkAuthAction = createAsyncThunk(
 );
 
 export const loginAction = createAsyncThunk(
-  'user/login',
+  ApiActions.UserLogin,
   async ({email, password}: AuthData) => {
     try {
       const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
@@ -49,7 +60,7 @@ export const loginAction = createAsyncThunk(
 );
 
 export const logoutAction = createAsyncThunk(
-  'user/logout',
+  ApiActions.UserLogout,
   async () => {
     try {
       await api.delete(APIRoute.Logout);
@@ -62,7 +73,7 @@ export const logoutAction = createAsyncThunk(
 );
 
 export const fetchHotelByIdAction = createAsyncThunk(
-  'property/fetchHotelById',
+  ApiActions.PropertyFetchHotel,
   async (hotelId: string) => {
     try {
       const {data} = await api.get<Hotel>(`${APIRoute.Hotel}${hotelId}`);
@@ -74,7 +85,7 @@ export const fetchHotelByIdAction = createAsyncThunk(
 );
 
 export const fetchReviewsAction = createAsyncThunk(
-  'property/fetchReviews',
+  ApiActions.PropertyFetchReviews,
   async (hotelId: string) => {
     try {
       const {data} = await api.get<Review[]>(`${APIRoute.Reviews}${hotelId}`);
@@ -86,7 +97,7 @@ export const fetchReviewsAction = createAsyncThunk(
 );
 
 export const fetchNearbyHotelsAction = createAsyncThunk(
-  'property/fetchNearbyHotels',
+  ApiActions.PropertyFetchNearbyHotels,
   async (hotelId: string) => {
     try {
       const {data} = await api.get<Hotel[]>(`${APIRoute.Hotel}${hotelId}/nearby`);
@@ -98,7 +109,7 @@ export const fetchNearbyHotelsAction = createAsyncThunk(
 );
 
 export const addReviewAction = createAsyncThunk(
-  'property/addReview',
+  ApiActions.PropertyAddReview,
   async ({hotelId, reviewData}: AddReview) => {
     try {
       const {comment, rating} = reviewData;

@@ -1,17 +1,15 @@
-import { Hotel } from '../../../types/hotel';
 import PlaceCard from '../place-card/place-card';
+import {useAppSelector} from '../../../hooks/';
 
-type NearPlacesProps = {
-  cards: Hotel[];
-}
+function NearPlaces(): JSX.Element {
+  const {nearbyHotels} = useAppSelector((state) => state);
 
-function NearPlaces({cards}: NearPlacesProps): JSX.Element {
   return (
     <div className='container'>
       <section className='near-places places'>
         <h2 className='near-places__title'>Other places in the neighbourhood</h2>
         <div className='near-places__list places__list'>
-          {cards.map((card) => (
+          {nearbyHotels.map((card) => (
             <PlaceCard
               key={card.id}
               hotel={card}

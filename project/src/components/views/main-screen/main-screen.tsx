@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 
 import Locations from '../../common/locations/locations';
 import Cities from '../../common/cities/cities';

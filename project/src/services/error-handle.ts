@@ -5,7 +5,7 @@ import {ErrorType} from '../types/error';
 import {HTTP_CODE} from '../const/http-codes';
 import {store} from '../store';
 import {redirectToRoute} from '../store/action';
-import { AppRoute } from '../const/routes';
+import {AppRoute} from '../const/routes';
 
 export const errorHandle = (error: ErrorType): void => {
   if (!request.isAxiosError(error)) {

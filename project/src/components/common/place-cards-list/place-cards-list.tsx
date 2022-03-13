@@ -1,5 +1,5 @@
-import { MouseEvent } from 'react';
-import { Hotel } from '../../../types/hotel';
+import {MouseEvent} from 'react';
+import {Hotel} from '../../../types/hotel';
 import PlaceCard from '../place-card/place-card';
 
 type PlaceCardsListProps = {
