@@ -8,16 +8,11 @@ import PropertyScreen from '../views/property-screen/property-screen';
 import NotFoundScreen from '../views/not-found-screen/not-found-screen';
 import PrivateRoute from '../common/private-route/private-route';
 import {Favorites} from '../../mocks/favorites';
-import {City} from '../../types/hotel';
 import {useAppSelector} from '../../hooks';
 import HistoryRouter from '../common/history-route/history-route';
 import browserHistory from '../../browser-history';
 
-type AppProps = {
-  city: City;
-}
-
-function App({city}: AppProps): JSX.Element {
+function App(): JSX.Element {
   const {authorizationStatus} = useAppSelector((state) => state);
 
   return (
