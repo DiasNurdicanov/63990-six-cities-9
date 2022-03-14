@@ -2,8 +2,8 @@ import classNames from 'classnames';
 import {MouseEvent} from 'react';
 import {Link} from 'react-router-dom';
 
-import { PlaceCardProps } from '../../../types/place-card';
-import { RATING_STAR_PERCENT } from '../../../const/common';
+import {PlaceCardProps} from '../../../types/place-card';
+import {RATING_STAR_PERCENT} from '../../../const/common';
 
 const IMAGE_SIZES = {
   small: {
