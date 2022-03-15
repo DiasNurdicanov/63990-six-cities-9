@@ -8,9 +8,9 @@ type HeaderProps = {
 }
 
 function Header({showNav}: HeaderProps): JSX.Element {
-  const authStatus = useAppSelector(({authorizationStatus}) => authorizationStatus);
+  const {authorizationStatus} = useAppSelector(({USER}) => USER);
 
-  const isAuth = authStatus === AuthorizationStatus.Auth;
+  const isAuth = authorizationStatus === AuthorizationStatus.Auth;
 
   const dispatch = useAppDispatch();
 

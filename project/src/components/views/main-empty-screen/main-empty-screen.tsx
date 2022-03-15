@@ -2,7 +2,7 @@ import Layout from '../../common/layout/layout';
 import Locations from '../../common/locations/locations';
 import {CitiesCoords} from '../../../const/cities';
 
-function MainScreen(): JSX.Element {
+function MainScreenEmpty(): JSX.Element {
   return (
     <Layout
       pageClassName='page--gray page--main'
@@ -29,4 +29,4 @@ function MainScreen(): JSX.Element {
   );
 }
 
-export default MainScreen;
+export default MainScreenEmpty;

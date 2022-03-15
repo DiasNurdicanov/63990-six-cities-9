@@ -8,9 +8,11 @@ import {useAppSelector} from '../../../hooks/';
 import {getOffers} from '../../../utils';
 
 import LoadingScreen from '../loading-screen/loading-screen';
+import MainScreenEmpty from '../main-empty-screen/main-empty-screen';
 
 function MainScreen(): JSX.Element {
-  const {hotels, sortType, city, isDataLoaded} = useAppSelector((state) => state);
+  const {hotels, isDataLoaded} = useAppSelector(({DATA}) => DATA);
+  const {sortType, city} = useAppSelector(({MAIN_SCREEN}) => MAIN_SCREEN);
   const [selectedHotels, setSelectedHotels] = useState(getOffers(hotels, sortType, city));
 
   useEffect(() => {
@@ -23,7 +25,7 @@ function MainScreen(): JSX.Element {
     );
   }
 
-  return (
+  const mainScreen = (
     <Layout
       pageClassName='page--gray page--main'
       mainElementClassName='page__main--index'
@@ -37,6 +39,8 @@ function MainScreen(): JSX.Element {
       </>
     </Layout>
   );
+
+  return selectedHotels.length ? mainScreen : <MainScreenEmpty />;
 }
 
 export default MainScreen;

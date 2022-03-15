@@ -21,6 +21,7 @@ export const errorHandle = (error: ErrorType): void => {
         break;
       case HTTP_CODE.UNAUTHORIZED:
         toast.info(response.data.error);
+        store.dispatch(redirectToRoute(AppRoute.SignIn));
         break;
       case HTTP_CODE.NOT_FOUND:
         toast.info(response.data.error);

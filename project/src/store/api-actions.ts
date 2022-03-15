@@ -1,7 +1,9 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {api} from '../store';
 import {store} from '../store';
-import {loadHotels, requireAuthorization, redirectToRoute, loadHotelById, loadReviews, loadNearbyHotels} from './action';
+import {redirectToRoute, } from './action';
+import {loadHotels, loadHotelById, loadReviews, loadNearbyHotels, updateHotel, loadFavorites} from './app-data/app-data';
+import {requireAuthorization} from './user-process/user-process';
 import {saveToken, dropToken} from '../services/token';
 import {APIRoute} from '../const/api-routes';
 import {AuthorizationStatus} from '../const/auth-status';
@@ -12,9 +14,12 @@ import {Hotel} from '../types/hotel';
 import {errorHandle} from '../services/error-handle';
 import {Review} from '../types/review';
 import {AddReview} from '../types/add-review';
+import { ToggleFavoriteStatus } from '../types/toggle-favorite-status';
 
 enum ApiActions {
   FetchHotels = 'data/fetchHotels',
+  FetchFavorites = 'data/fetchFavorites',
+  ToggleFavorite = 'data/toggleFavorite',
   UserCheckAuth = 'user/checkAuth',
   UserLogin = 'user/login',
   UserLogout = 'user/logout',
@@ -115,6 +120,31 @@ export const addReviewAction = createAsyncThunk(
       const {comment, rating} = reviewData;
       const {data} = await api.post<Review[]>(`${APIRoute.Reviews}${hotelId}`, {comment, rating});
       store.dispatch(loadReviews(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+
+export const toggleFavoriteStatus = createAsyncThunk(
+  ApiActions.ToggleFavorite,
+  async ({hotelId, status}: ToggleFavoriteStatus) => {
+    try {
+      const {data} = await api.post<Hotel>(`${APIRoute.Favorite}${hotelId}/${status}`);
+      store.dispatch(updateHotel(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchFavorites = createAsyncThunk(
+  ApiActions.FetchFavorites,
+  async () => {
+    try {
+      const {data} = await api.get<Hotel[]>(APIRoute.Favorite);
+      store.dispatch(loadFavorites(data));
     } catch (error) {
       errorHandle(error);
     }

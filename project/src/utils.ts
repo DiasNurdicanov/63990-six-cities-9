@@ -9,3 +9,32 @@ export const getOffers = (hotels: Hotel[], sortType: SortingType, city: City) =>
 
 export const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
   authorizationStatus === AuthorizationStatus.Unknown;
+
+export const updateItem = (hotels: Hotel[], item: Hotel) => {
+  const index = hotels.findIndex((hotel) => hotel.id === item.id);
+
+  if (index === -1) {
+    throw new Error('Can\'t update unexisting hotel');
+  }
+
+  const newHotels = hotels.slice();
+  newHotels[index] = item;
+
+  return newHotels;
+};
+
+
+export const removeItem = (hotels: Hotel[], item: Hotel) => {
+  const index = hotels.findIndex((hotel) => hotel.id === item.id);
+
+  if (index === -1) {
+    throw new Error('Can\'t remove unexisting hotel');
+  }
+
+  const newHotels = [
+    ...hotels.slice(0, index),
+    ...hotels.slice(index + 1),
+  ];
+
+  return newHotels;
+};

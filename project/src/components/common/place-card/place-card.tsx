@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom';
 
 import {PlaceCardProps} from '../../../types/place-card';
 import {RATING_STAR_PERCENT} from '../../../const/common';
+import {useAppDispatch} from '../../../hooks/';
+import { toggleFavoriteStatus } from '../../../store/api-actions';
 
 const IMAGE_SIZES = {
   small: {
@@ -14,6 +16,11 @@ const IMAGE_SIZES = {
     width: 260,
     height: 200,
   },
+};
+
+const FAVORITE_STATUS = {
+  isFavorite: 1,
+  isNotFavorite: 0,
 };
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
@@ -35,6 +42,17 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
     onCardHover,
     onCardHoverReset,
   } = props;
+
+  const dispatch = useAppDispatch();
+
+  const handleFavoriteClick = (evt: MouseEvent<HTMLButtonElement>) => {
+    evt.preventDefault();
+
+    dispatch(toggleFavoriteStatus({
+      hotelId: id,
+      status: isFavorite ? FAVORITE_STATUS.isNotFavorite : FAVORITE_STATUS.isFavorite,
+    }));
+  };
 
   return (
     <article
@@ -65,7 +83,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
             <b className='place-card__price-value'>&euro;{price}</b>
             <span className='place-card__price-text'>&#47;&nbsp;night</span>
           </div>
-          <button className={classNames('place-card__bookmark-button', 'button', {'place-card__bookmark-button--active': isFavorite})} type='button'>
+          <button onClick={handleFavoriteClick} className={classNames('place-card__bookmark-button', 'button', {'place-card__bookmark-button--active': isFavorite})} type='button'>
             <svg className='place-card__bookmark-icon' width='18' height='19'>
               <use xlinkHref='#icon-bookmark'></use>
             </svg>
