@@ -1,16 +1,17 @@
-import {Cities} from '../../../const/cities';
-import {useAppDispatch, useAppSelector} from '../../../hooks/';
 import classNames from 'classnames';
 
-import {setCity} from '../../../store/action';
+import {setCity} from '../../../store/main-screen/main-screen';
+
+import {Cities} from '../../../const/cities';
 import {CitiesCoordsType} from '../../../types/hotel';
+import {useAppDispatch, useAppSelector} from '../../../hooks/';
 
 type LocationProps = {
   cities: CitiesCoordsType
 }
 
 function Locations({cities}: LocationProps): JSX.Element {
-  const {city} = useAppSelector((state) => state);
+  const {city} = useAppSelector(({MAIN_SCREEN}) => MAIN_SCREEN);
 
   const dispatch = useAppDispatch();
 

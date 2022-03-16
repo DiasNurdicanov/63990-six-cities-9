@@ -1,15 +1,18 @@
 import classNames from 'classnames';
-import {AuthorizationStatus} from '../../../const/auth-status';
+
 import Map from '../map/map';
 import AddReviewForm from '../add-review-form/add-review-form';
 import ReviewList from '../review-list/review-list';
+
 import {useAppSelector} from '../../../hooks/';
 import {RATING_STAR_PERCENT} from '../../../const/common';
+import {AuthorizationStatus} from '../../../const/auth-status';
 
 const MAX_IMAGES_COUNT = 6;
 
 function Property(): JSX.Element | null {
-  const {hotel, reviews, nearbyHotels, authorizationStatus} = useAppSelector((state) => state);
+  const {authorizationStatus} = useAppSelector(({USER}) => USER);
+  const {hotel, reviews, nearbyHotels} = useAppSelector(({DATA}) => DATA);
 
   if (hotel === null) {
     return null;

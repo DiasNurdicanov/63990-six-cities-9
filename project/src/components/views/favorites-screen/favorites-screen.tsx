@@ -1,17 +1,26 @@
-import {Hotel} from '../../../types/hotel';
+import LoadingScreen from '../loading-screen/loading-screen';
 import Layout from '../../common/layout/layout';
 import PlaceCard from '../../common/place-card/place-card';
-import {Cities} from '../../../const/cities';
 
-type FavoritesScreenProps = {
-  cards: Hotel[];
-}
+import {Hotel} from '../../../types/hotel';
+import {Cities} from '../../../const/cities';
+import {useAppSelector} from '../../../hooks/';
+import {isCheckedAuth} from '../../../utils';
 
 type Hotels = {
   [keyof in Cities]: Hotel[]
 }
 
-function FavoritesScreen({cards}: FavoritesScreenProps): JSX.Element {
+function FavoritesScreen(): JSX.Element {
+  const {authorizationStatus} = useAppSelector(({USER}) => USER);
+  const {favorites, isDataLoaded} = useAppSelector(({DATA}) => DATA);
+
+  if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   const hotels: Hotels = {
     [Cities.Paris]: [],
     [Cities.Cologne]: [],
@@ -21,7 +30,7 @@ function FavoritesScreen({cards}: FavoritesScreenProps): JSX.Element {
     [Cities.Dusseldorf]: [],
   };
 
-  const cities = cards.reduce((acc, current) => {
+  const cities = favorites.reduce((acc, current) => {
     const {name: currentCity} = current.city;
 
     acc[currentCity].push(current);

@@ -1,5 +1,5 @@
 import {useRef, useEffect, useState} from 'react';
-import {Icon, Marker, PointExpression} from 'leaflet';
+import {Icon, Marker, PointExpression, LatLng} from 'leaflet';
 
 import {Hotel} from '../../../types/hotel';
 import {City} from '../../../types/hotel';
@@ -32,13 +32,13 @@ const currentCustomIcon = new Icon({
 
 function Map(props: MapProps): JSX.Element {
   const {hotels, city, activeMarkerIndex} = props;
-
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
   const [markers] = useState<Marker[]>([]);
 
   useEffect(() => {
     if (map) {
+      map.panTo(new LatLng(city.location.latitude, city.location.longitude));
       markers.forEach((marker) => map.removeLayer(marker));
 
       hotels.forEach((hotel) => {
@@ -58,7 +58,7 @@ function Map(props: MapProps): JSX.Element {
         markers.push(marker);
       });
     }
-  }, [map, hotels, markers, activeMarkerIndex]);
+  }, [map, hotels, markers, activeMarkerIndex, city]);
 
   return <div style={{height: '100%'}} ref={mapRef}></div>;
 }

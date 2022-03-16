@@ -1,5 +1,6 @@
 import {RouteProps} from 'react-router-dom';
 import classNames from 'classnames';
+
 import SvgSprite from '../svg-sprite/svg-sprite';
 import Header from '../header/header';
 import Footer from '../footer/footer';

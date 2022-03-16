@@ -1,16 +1,19 @@
 import {Link} from 'react-router-dom';
+
+import {logoutAction} from '../../../store/api-actions';
+
 import {useAppSelector, useAppDispatch} from '../../../hooks';
 import {AuthorizationStatus} from '../../../const/auth-status';
-import {logoutAction} from '../../../store/api-actions';
+
 
 type HeaderProps = {
   showNav?: boolean
 }
 
 function Header({showNav}: HeaderProps): JSX.Element {
-  const authStatus = useAppSelector(({authorizationStatus}) => authorizationStatus);
+  const {authorizationStatus} = useAppSelector(({USER}) => USER);
 
-  const isAuth = authStatus === AuthorizationStatus.Auth;
+  const isAuth = authorizationStatus === AuthorizationStatus.Auth;
 
   const dispatch = useAppDispatch();
 

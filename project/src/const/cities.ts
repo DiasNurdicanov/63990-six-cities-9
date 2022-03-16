@@ -12,25 +12,25 @@ export enum Cities {
 export const CitiesCoords: CitiesCoordsType = {
   [Cities.Paris]: {
     'location': {
-      'latitude': 52.370216,
-      'longitude': 4.895168,
-      'zoom': 10,
+      'latitude': 48.85661,
+      'longitude': 2.351499,
+      'zoom': 13,
     },
     'name': Cities.Paris,
   },
   [Cities.Cologne]: {
     'location': {
-      'latitude': 52.370216,
-      'longitude': 4.895168,
-      'zoom': 10,
+      'latitude': 50.938361,
+      'longitude': 6.959974,
+      'zoom': 13,
     },
     'name': Cities.Cologne,
   },
   [Cities.Brussels]: {
     'location': {
-      'latitude': 52.370216,
-      'longitude': 4.895168,
-      'zoom': 10,
+      'latitude': 50.846557,
+      'longitude': 4.351697,
+      'zoom': 13,
     },
     'name': Cities.Brussels,
   },
@@ -38,23 +38,23 @@ export const CitiesCoords: CitiesCoordsType = {
     'location': {
       'latitude': 52.370216,
       'longitude': 4.895168,
-      'zoom': 10,
+      'zoom': 13,
     },
     'name': Cities.Amsterdam,
   },
   [Cities.Hamburg]: {
     'location': {
-      'latitude': 52.370216,
-      'longitude': 4.895168,
-      'zoom': 10,
+      'latitude': 53.550341,
+      'longitude': 10.000654,
+      'zoom': 13,
     },
     'name': Cities.Hamburg,
   },
   [Cities.Dusseldorf]: {
     'location': {
-      'latitude': 52.370216,
-      'longitude': 4.895168,
-      'zoom': 10,
+      'latitude': 51.225402,
+      'longitude': 6.776314,
+      'zoom': 13,
     },
     'name': Cities.Dusseldorf,
   },

@@ -1,16 +1,19 @@
 import {useState, MouseEvent} from 'react';
-import {useAppSelector} from '../../../hooks/';
+
 import PlaceCardsList from '../place-cards-list/place-cards-list';
 import Map from '../map/map';
 import Sorting from '../sorting/sorting';
+
 import {Hotel} from '../../../types/hotel';
+import {useAppSelector} from '../../../hooks/';
+
 
 type CitiesProps = {
   selectedHotels: Hotel[]
 }
 
 function Cities({selectedHotels}: CitiesProps): JSX.Element {
-  const {city} = useAppSelector((state) => state);
+  const {city} = useAppSelector(({MAIN_SCREEN}) => MAIN_SCREEN);
   const [activeCard, setActiveCard] = useState(0);
 
   const handleSetActiveCard = (e: MouseEvent<HTMLDivElement>, id: number) => setActiveCard(id);

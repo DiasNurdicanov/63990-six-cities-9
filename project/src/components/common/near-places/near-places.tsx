@@ -1,8 +1,9 @@
 import PlaceCard from '../place-card/place-card';
+
 import {useAppSelector} from '../../../hooks/';
 
 function NearPlaces(): JSX.Element {
-  const {nearbyHotels} = useAppSelector((state) => state);
+  const {nearbyHotels} = useAppSelector(({DATA}) => DATA);
 
   return (
     <div className='container'>
