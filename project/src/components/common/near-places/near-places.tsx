@@ -1,4 +1,5 @@
 import PlaceCard from '../place-card/place-card';
+
 import {useAppSelector} from '../../../hooks/';
 
 function NearPlaces(): JSX.Element {

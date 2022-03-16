@@ -2,10 +2,11 @@ import classNames from 'classnames';
 import {MouseEvent} from 'react';
 import {Link} from 'react-router-dom';
 
+import {toggleFavoriteStatus} from '../../../store/api-actions';
+
 import {PlaceCardProps} from '../../../types/place-card';
 import {RATING_STAR_PERCENT} from '../../../const/common';
 import {useAppDispatch} from '../../../hooks/';
-import { toggleFavoriteStatus } from '../../../store/api-actions';
 
 const IMAGE_SIZES = {
   small: {

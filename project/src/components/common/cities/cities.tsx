@@ -1,9 +1,11 @@
 import {useState, MouseEvent} from 'react';
-import {useAppSelector} from '../../../hooks/';
+
 import PlaceCardsList from '../place-cards-list/place-cards-list';
 import Map from '../map/map';
 import Sorting from '../sorting/sorting';
+
 import {Hotel} from '../../../types/hotel';
+import {useAppSelector} from '../../../hooks/';
 
 
 type CitiesProps = {

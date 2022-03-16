@@ -1,10 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {NameSpace} from '../../const/name-space';
 
+import {NameSpace} from '../../const/name-space';
 import {CitiesCoords} from '../../const/cities';
 import {SortingType} from '../../const/sorting';
-import {City} from '../../types/hotel';
 import {Cities} from '../../const/cities';
+import {City} from '../../types/hotel';
 
 type MainScreen = {
   city: City;

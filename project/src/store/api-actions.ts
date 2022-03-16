@@ -1,20 +1,22 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
+
 import {api} from '../store';
 import {store} from '../store';
 import {redirectToRoute} from './action';
 import {loadHotels, loadHotelById, loadReviews, loadNearbyHotels, updateHotel, loadFavorites} from './app-data/app-data';
 import {requireAuthorization} from './user-process/user-process';
+
 import {saveToken, dropToken} from '../services/token';
+import {errorHandle} from '../services/error-handle';
 import {APIRoute} from '../const/api-routes';
 import {AuthorizationStatus} from '../const/auth-status';
 import {AppRoute} from '../const/routes';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {Hotel} from '../types/hotel';
-import {errorHandle} from '../services/error-handle';
 import {Review} from '../types/review';
 import {AddReview} from '../types/add-review';
-import { ToggleFavoriteStatus } from '../types/toggle-favorite-status';
+import {ToggleFavoriteStatus} from '../types/toggle-favorite-status';
 
 enum ApiActions {
   FetchHotels = 'data/fetchHotels',
@@ -131,7 +133,7 @@ export const toggleFavoriteStatus = createAsyncThunk(
   ApiActions.ToggleFavorite,
   async ({hotelId, status}: ToggleFavoriteStatus) => {
     try {
-      const {data} = await api.post<Hotel>(`${APIRoute.Favorite}${hotelId}/${status}`);
+      const {data} = await api.post<Hotel>(`${APIRoute.Favorites}${hotelId}/${status}`);
       store.dispatch(updateHotel(data));
     } catch (error) {
       errorHandle(error);
@@ -143,7 +145,7 @@ export const fetchFavorites = createAsyncThunk(
   ApiActions.FetchFavorites,
   async () => {
     try {
-      const {data} = await api.get<Hotel[]>(APIRoute.Favorite);
+      const {data} = await api.get<Hotel[]>(APIRoute.Favorites);
       store.dispatch(loadFavorites(data));
     } catch (error) {
       errorHandle(error);

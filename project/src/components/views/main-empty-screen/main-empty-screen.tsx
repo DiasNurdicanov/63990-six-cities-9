@@ -1,5 +1,6 @@
 import Layout from '../../common/layout/layout';
 import Locations from '../../common/locations/locations';
+
 import {CitiesCoords} from '../../../const/cities';
 
 function MainScreenEmpty(): JSX.Element {

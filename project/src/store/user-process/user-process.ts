@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+
 import {NameSpace} from '../../const/name-space';
 import {AuthorizationStatus} from '../../const/auth-status';
 import {UserProcess} from '../../types/state';

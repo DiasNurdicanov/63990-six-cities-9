@@ -1,10 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {NameSpace} from '../../const/name-space';
 
+import {NameSpace} from '../../const/name-space';
 import {Hotel} from '../../types/hotel';
 import {Review} from '../../types/review';
 import {removeItem, updateItem} from '../../utils';
-
 
 type InitalState = {
   hotels: Hotel[];

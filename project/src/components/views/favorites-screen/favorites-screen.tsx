@@ -1,10 +1,10 @@
-import {Hotel} from '../../../types/hotel';
+import LoadingScreen from '../loading-screen/loading-screen';
 import Layout from '../../common/layout/layout';
 import PlaceCard from '../../common/place-card/place-card';
+
+import {Hotel} from '../../../types/hotel';
 import {Cities} from '../../../const/cities';
 import {useAppSelector} from '../../../hooks/';
-
-import LoadingScreen from '../loading-screen/loading-screen';
 import {isCheckedAuth} from '../../../utils';
 
 type Hotels = {

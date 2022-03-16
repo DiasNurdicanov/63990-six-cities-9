@@ -1,7 +1,10 @@
 import {useState, ChangeEvent, FormEvent} from 'react';
-import {useAppDispatch} from '../../../hooks/';
-import Layout from '../../common/layout/layout';
+
 import {loginAction} from '../../../store/api-actions';
+
+import Layout from '../../common/layout/layout';
+
+import {useAppDispatch} from '../../../hooks/';
 import {AuthData} from '../../../types/auth-data';
 
 function LoginScreen(): JSX.Element {

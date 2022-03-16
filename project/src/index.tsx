@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/app/app';
 import {Provider} from 'react-redux';
+import {ToastContainer} from 'react-toastify';
+
 import {store} from './store';
 import {fetchHotelsAction, checkAuthAction, fetchHotelByIdAction, fetchReviewsAction, fetchNearbyHotelsAction, fetchFavorites} from './store/api-actions';
-import {ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
+import App from './components/app/app';
 
 import browserHistory from './browser-history';
 import {AppRoute} from './const/routes';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 store.dispatch(checkAuthAction());
 

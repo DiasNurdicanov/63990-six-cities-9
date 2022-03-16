@@ -1,7 +1,9 @@
 import classNames from 'classnames';
+
+import {setSortType} from '../../../store/main-screen/main-screen';
+
 import {SortingType} from '../../../const/sorting';
 import {useAppDispatch, useAppSelector} from '../../../hooks/';
-import {setSortType} from '../../../store/main-screen/main-screen';
 
 function Sorting() {
   const {sortType} = useAppSelector(({MAIN_SCREEN}) => MAIN_SCREEN);

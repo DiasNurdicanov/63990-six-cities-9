@@ -1,7 +1,10 @@
 import {useState, ChangeEvent, FormEvent} from 'react';
-import RatingStarItem from '../rating-star-item/rating-star-item';
-import {useAppDispatch} from '../../../hooks/';
+
 import {addReviewAction} from '../../../store/api-actions';
+
+import RatingStarItem from '../rating-star-item/rating-star-item';
+
+import {useAppDispatch} from '../../../hooks/';
 import {AddReview} from '../../../types/add-review';
 
 const RATING_STAR_COUNT = 5;
