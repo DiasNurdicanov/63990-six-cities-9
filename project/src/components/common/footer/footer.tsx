@@ -8,6 +8,7 @@ function Footer(): JSX.Element {
           alt='6 cities logo'
           width='64'
           height='33'
+          data-testid='logo'
         />
       </a>
     </footer>

@@ -7,6 +7,7 @@ import {store} from './store';
 import {fetchHotelsAction, checkAuthAction, fetchHotelByIdAction, fetchReviewsAction, fetchNearbyHotelsAction, fetchFavorites} from './store/api-actions';
 
 import App from './components/app/app';
+import HistoryRouter from './components/common/history-route/history-route';
 
 import browserHistory from './browser-history';
 import {AppRoute} from './const/routes';
@@ -35,8 +36,10 @@ switch (pathname) {
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ToastContainer />
-      <App />
+      <HistoryRouter history={browserHistory}>
+        <ToastContainer />
+        <App />
+      </HistoryRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'));

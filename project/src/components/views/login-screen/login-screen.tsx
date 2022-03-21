@@ -62,6 +62,7 @@ function LoginScreen(): JSX.Element {
                 value={authData.email}
                 onChange={handleAuthDataChange}
                 required
+                data-testid='e-mail'
               />
             </div>
             <div className='login__input-wrapper form__input-wrapper'>
@@ -74,6 +75,7 @@ function LoginScreen(): JSX.Element {
                 value={authData.password}
                 onChange={handleAuthDataChange}
                 required
+                data-testid='password'
               />
             </div>
             <button className='login__submit form__submit button' type='submit'>Sign in</button>
