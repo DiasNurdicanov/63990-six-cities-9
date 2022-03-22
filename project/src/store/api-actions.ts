@@ -1,7 +1,6 @@
+import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 
-import {api} from '../store';
-import {store} from '../store';
 import {redirectToRoute} from './action';
 import {loadHotels, loadHotelById, loadReviews, loadNearbyHotels, updateHotel, loadFavorites} from './app-data/app-data';
 import {requireAuthorization} from './user-process/user-process';
@@ -17,6 +16,7 @@ import {Hotel} from '../types/hotel';
 import {Review} from '../types/review';
 import {AddReview} from '../types/add-review';
 import {ToggleFavoriteStatus} from '../types/toggle-favorite-status';
+import {AppDispatch, State} from '../types/state.js';
 
 enum ApiActions {
   FetchHotels = 'data/fetchHotels',
@@ -31,97 +31,129 @@ enum ApiActions {
   PropertyAddReview = 'property/addReview',
 }
 
-export const fetchHotelsAction = createAsyncThunk(
+export const fetchHotelsAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
   ApiActions.FetchHotels,
-  async () => {
+  async (_arg, {dispatch, extra: api}) => {
     try {
       const {data} = await api.get<Hotel[]>(APIRoute.Hotels);
-      store.dispatch(loadHotels(data));
+      dispatch(loadHotels(data));
     } catch (error) {
       errorHandle(error);
     }
   },
 );
 
-export const checkAuthAction = createAsyncThunk(
+export const checkAuthAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
   ApiActions.UserCheckAuth,
-  async () => {
+  async (_arg, {dispatch, extra: api}) => {
     await api.get(APIRoute.Login);
-    store.dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    dispatch(requireAuthorization(AuthorizationStatus.Auth));
   },
 );
 
-export const loginAction = createAsyncThunk(
+export const loginAction = createAsyncThunk<void, AuthData, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
   ApiActions.UserLogin,
-  async ({email, password}: AuthData) => {
+  async ({email, password}, {dispatch, extra: api}) => {
     try {
       const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
       saveToken(token);
-      store.dispatch(requireAuthorization(AuthorizationStatus.Auth));
-      store.dispatch(redirectToRoute(AppRoute.Main));
+      dispatch(requireAuthorization(AuthorizationStatus.Auth));
+      dispatch(redirectToRoute(AppRoute.Main));
     } catch (error) {
       errorHandle(error);
-      store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+      dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     }
   },
 );
 
-export const logoutAction = createAsyncThunk(
+export const logoutAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
   ApiActions.UserLogout,
-  async () => {
+  async (_arg, {dispatch, extra: api}) => {
     try {
       await api.delete(APIRoute.Logout);
       dropToken();
-      store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+      dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     } catch (error) {
       errorHandle(error);
     }
   },
 );
 
-export const fetchHotelByIdAction = createAsyncThunk(
+export const fetchHotelByIdAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
   ApiActions.PropertyFetchHotel,
-  async (hotelId: string) => {
+  async (hotelId, {dispatch, extra: api}) => {
     try {
       const {data} = await api.get<Hotel>(`${APIRoute.Hotel}${hotelId}`);
-      store.dispatch(loadHotelById(data));
+      dispatch(loadHotelById(data));
     } catch (error) {
       errorHandle(error);
     }
   },
 );
 
-export const fetchReviewsAction = createAsyncThunk(
+export const fetchReviewsAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
   ApiActions.PropertyFetchReviews,
-  async (hotelId: string) => {
+  async (hotelId, {dispatch, extra: api}) => {
     try {
       const {data} = await api.get<Review[]>(`${APIRoute.Reviews}${hotelId}`);
-      store.dispatch(loadReviews(data));
+      dispatch(loadReviews(data));
     } catch (error) {
       errorHandle(error);
     }
   },
 );
 
-export const fetchNearbyHotelsAction = createAsyncThunk(
+export const fetchNearbyHotelsAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
   ApiActions.PropertyFetchNearbyHotels,
-  async (hotelId: string) => {
+  async (hotelId, {dispatch, extra: api}) => {
     try {
       const {data} = await api.get<Hotel[]>(`${APIRoute.Hotel}${hotelId}/nearby`);
-      store.dispatch(loadNearbyHotels(data));
+      dispatch(loadNearbyHotels(data));
     } catch (error) {
       errorHandle(error);
     }
   },
 );
 
-export const addReviewAction = createAsyncThunk(
+export const addReviewAction = createAsyncThunk<void, AddReview, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
   ApiActions.PropertyAddReview,
-  async ({hotelId, reviewData}: AddReview) => {
+  async ({hotelId, reviewData}, {dispatch, extra: api}) => {
     try {
       const {comment, rating} = reviewData;
       const {data} = await api.post<Review[]>(`${APIRoute.Reviews}${hotelId}`, {comment, rating});
-      store.dispatch(loadReviews(data));
+      dispatch(loadReviews(data));
     } catch (error) {
       errorHandle(error);
     }
@@ -129,24 +161,32 @@ export const addReviewAction = createAsyncThunk(
 );
 
 
-export const toggleFavoriteStatus = createAsyncThunk(
+export const toggleFavoriteStatus = createAsyncThunk<void, ToggleFavoriteStatus, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
   ApiActions.ToggleFavorite,
-  async ({hotelId, status}: ToggleFavoriteStatus) => {
+  async ({hotelId, status}, {dispatch, extra: api}) => {
     try {
       const {data} = await api.post<Hotel>(`${APIRoute.Favorites}${hotelId}/${status}`);
-      store.dispatch(updateHotel(data));
+      dispatch(updateHotel(data));
     } catch (error) {
       errorHandle(error);
     }
   },
 );
 
-export const fetchFavorites = createAsyncThunk(
+export const fetchFavorites = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
   ApiActions.FetchFavorites,
-  async () => {
+  async (_arg, {dispatch, extra: api}) => {
     try {
       const {data} = await api.get<Hotel[]>(APIRoute.Favorites);
-      store.dispatch(loadFavorites(data));
+      dispatch(loadFavorites(data));
     } catch (error) {
       errorHandle(error);
     }

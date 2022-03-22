@@ -17,6 +17,7 @@ function RatingStarItem({id, onChangeHandler, isChecked}: RatingStarItemProps): 
         type='radio'
         checked={isChecked}
         onChange={onChangeHandler}
+        data-testid='rating-item'
       />
       <label
         htmlFor={`${id}-stars`}
