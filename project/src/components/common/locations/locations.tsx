@@ -39,6 +39,7 @@ function Locations({cities}: LocationProps): JSX.Element {
             }
             onClick={() => onClick(citiesItem)}
             href='#!'
+            data-testid={citiesItem}
             >
               <span>{citiesItem}</span>
             </a>

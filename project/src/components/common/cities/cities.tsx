@@ -31,7 +31,7 @@ function Cities({selectedHotels}: CitiesProps): JSX.Element {
           </div>
         </section>
         <div className='cities__right-section'>
-          <section className='cities__map map'>
+          <section className='cities__map map' data-testid='map'>
             <Map hotels={selectedHotels} city={city} activeMarkerIndex={activeCard} />
           </section>
         </div>
