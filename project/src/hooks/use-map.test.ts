@@ -1,7 +1,9 @@
-import {makeFakeHotel} from '../utils/mocks';
 import {renderHook} from '@testing-library/react-hooks';
 import {Map} from 'leaflet';
+
 import useMap from './use-map';
+
+import {makeFakeHotel} from '../utils/mocks';
 
 const fakeHotel = makeFakeHotel();
 
