@@ -37,7 +37,7 @@ describe('Component: main-screen', () => {
       </Provider>,
     );
 
-    expect(screen.getByText(/No places to stay available/i)).toBeInTheDocument();
-    expect(screen.getByText(/We could not find/i)).toBeInTheDocument();
+    expect(screen.getByText(/places to stay/i)).toBeInTheDocument();
+    expect(screen.getByText(/Sort by/i)).toBeInTheDocument();
   });
 });
