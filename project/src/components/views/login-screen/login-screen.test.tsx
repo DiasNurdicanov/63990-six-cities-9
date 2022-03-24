@@ -6,7 +6,8 @@ import userEvent from '@testing-library/user-event';
 
 import HistoryRouter from '../../common/history-route/history-route';
 import LoginScreen from './login-screen';
-import { AuthorizationStatus } from '../../../const/auth-status';
+
+import {AuthorizationStatus} from '../../../const/auth-status';
 
 const mockStore = configureMockStore();
 

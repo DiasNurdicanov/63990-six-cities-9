@@ -5,10 +5,11 @@ import {Provider} from 'react-redux';
 
 import HistoryRouter from '../../common/history-route/history-route';
 import MainScreen from './main-screen';
+
 import {AuthorizationStatus} from '../../../const/auth-status';
 import {CitiesCoords} from '../../../const/cities';
 import {makeFakeHotel} from '../../../utils/mocks';
-import { SortingType } from '../../../const/sorting';
+import {SortingType} from '../../../const/sorting';
 
 const mockStore = configureMockStore();
 

@@ -10,7 +10,7 @@ import Locations from './locations';
 
 import {CitiesCoords} from '../../../const/cities';
 import {makeFakeHotel} from '../../../utils/mocks';
-import { NameSpace } from '../../../const/name-space';
+import {NameSpace} from '../../../const/name-space';
 
 const mockStore = configureMockStore();
 

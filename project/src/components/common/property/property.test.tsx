@@ -9,7 +9,6 @@ import Property from './property';
 import {AuthorizationStatus} from '../../../const/auth-status';
 import {makeFakeHotel, makeFakeReview} from '../../../utils/mocks';
 
-
 const mockStore = configureMockStore();
 
 const store = mockStore({

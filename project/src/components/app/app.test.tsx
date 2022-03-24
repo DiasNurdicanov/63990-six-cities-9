@@ -10,7 +10,7 @@ import {AuthorizationStatus} from '../../const/auth-status';
 import {AppRoute} from '../../const/routes';
 import {SortingType} from '../../const/sorting';
 import {Cities, CitiesCoords} from '../../const/cities';
-import { makeFakeHotel } from '../../utils/mocks';
+import {makeFakeHotel} from '../../utils/mocks';
 const mockStore = configureMockStore();
 
 const store = mockStore({

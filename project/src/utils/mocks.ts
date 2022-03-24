@@ -1,7 +1,8 @@
 import {internet, address, lorem, datatype, image} from 'faker';
-import { Cities} from '../const/cities';
+
+import {Cities} from '../const/cities';
 import {Hotel} from '../types/hotel';
-import { Review } from '../types/review';
+import {Review} from '../types/review';
 import {getRandomInteger} from '../utils';
 
 const CitiesList = Object.values(Cities);

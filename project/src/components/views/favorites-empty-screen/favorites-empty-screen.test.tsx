@@ -5,6 +5,7 @@ import {Provider} from 'react-redux';
 
 import HistoryRouter from '../../common/history-route/history-route';
 import FavoritesEmptyScreen from './favorites-empty-screen';
+
 import {AuthorizationStatus} from '../../../const/auth-status';
 
 const mockStore = configureMockStore();

@@ -5,8 +5,9 @@ import {Provider} from 'react-redux';
 
 import HistoryRouter from '../../common/history-route/history-route';
 import MainScreenEmpty from './main-empty-screen';
+
 import {AuthorizationStatus} from '../../../const/auth-status';
-import { CitiesCoords } from '../../../const/cities';
+import {CitiesCoords} from '../../../const/cities';
 
 const mockStore = configureMockStore();
 

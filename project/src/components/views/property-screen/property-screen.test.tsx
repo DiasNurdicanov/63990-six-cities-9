@@ -5,6 +5,7 @@ import {Provider} from 'react-redux';
 
 import HistoryRouter from '../../common/history-route/history-route';
 import PropertyScreen from './property-screen';
+
 import {AuthorizationStatus} from '../../../const/auth-status';
 import {makeFakeHotel, makeFakeReview} from '../../../utils/mocks';
 

@@ -5,6 +5,7 @@ import {Provider} from 'react-redux';
 
 import HistoryRouter from '../../common/history-route/history-route';
 import NotFoundScreen from './not-found-screen';
+
 import {AuthorizationStatus} from '../../../const/auth-status';
 
 const mockStore = configureMockStore();

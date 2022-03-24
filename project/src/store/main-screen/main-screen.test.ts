@@ -1,9 +1,9 @@
+import {setCity, setSortType, mainScreen} from './main-screen';
+
 import {CitiesCoords} from '../../const/cities';
 import {SortingType} from '../../const/sorting';
 import {Cities} from '../../const/cities';
-
-import {setCity, setSortType, mainScreen} from './main-screen';
-import { getRandomInteger } from '../../utils';
+import {getRandomInteger} from '../../utils';
 
 const initialState = {
   city: CitiesCoords[Cities.Paris],

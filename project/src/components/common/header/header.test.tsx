@@ -5,7 +5,8 @@ import {Provider} from 'react-redux';
 
 import HistoryRouter from '../history-route/history-route';
 import Header from './header';
-import { AuthorizationStatus } from '../../../const/auth-status';
+
+import {AuthorizationStatus} from '../../../const/auth-status';
 
 const mockStore = configureMockStore();
 

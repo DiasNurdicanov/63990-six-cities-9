@@ -1,6 +1,6 @@
-import {userProcess} from './user-process';
+import {userProcess, requireAuthorization} from './user-process';
+
 import {AuthorizationStatus} from '../../const/auth-status';
-import {requireAuthorization} from './user-process';
 
 describe('Reducer: user', () => {
   it('without additional parameters should return initial state', () => {
