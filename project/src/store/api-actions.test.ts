@@ -7,10 +7,10 @@ import {createAPI} from '../services/api';
 import {addReviewAction, checkAuthAction, fetchFavorites, fetchHotelByIdAction, fetchHotelsAction, fetchNearbyHotelsAction, fetchReviewsAction, toggleFavoriteStatus} from './api-actions';
 import {requireAuthorization} from './user-process/user-process';
 import {loadFavorites, loadHotelById, loadHotels, loadNearbyHotels, loadReviews, updateHotel} from './app-data/app-data';
+
 import {APIRoute} from '../const/api-routes';
 import {State} from '../types/state';
 import {AddReview} from '../types/add-review';
-
 import {makeFakeHotel, makeFakeReview} from '../utils/mocks';
 
 describe('Async actions', () => {

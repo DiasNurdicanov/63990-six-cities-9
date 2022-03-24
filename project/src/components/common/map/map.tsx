@@ -3,7 +3,7 @@ import {Icon, Marker, PointExpression, LatLng} from 'leaflet';
 
 import {Hotel} from '../../../types/hotel';
 import {City} from '../../../types/hotel';
-import useMap from '../../../hooks/useMap';
+import useMap from '../../../hooks/use-map';
 
 import 'leaflet/dist/leaflet.css';
 
