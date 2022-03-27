@@ -2,11 +2,9 @@ import classNames from 'classnames';
 import {MouseEvent} from 'react';
 import {Link} from 'react-router-dom';
 
-import {toggleFavoriteStatus} from '../../../store/api-actions';
-
 import {PlaceCardProps} from '../../../types/place-card';
 import {RATING_STAR_PERCENT} from '../../../const/common';
-import {useAppDispatch} from '../../../hooks/';
+import {useFavoriteHandle} from '../../../hooks/use-favorite-handle';
 
 const IMAGE_SIZES = {
   small: {
@@ -17,11 +15,6 @@ const IMAGE_SIZES = {
     width: 260,
     height: 200,
   },
-};
-
-const FAVORITE_STATUS = {
-  isFavorite: 1,
-  isNotFavorite: 0,
 };
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
@@ -44,16 +37,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
     onCardHoverReset,
   } = props;
 
-  const dispatch = useAppDispatch();
-
-  const handleFavoriteClick = (evt: MouseEvent<HTMLButtonElement>) => {
-    evt.preventDefault();
-
-    dispatch(toggleFavoriteStatus({
-      hotelId: id,
-      status: isFavorite ? FAVORITE_STATUS.isNotFavorite : FAVORITE_STATUS.isFavorite,
-    }));
-  };
+  const handleFavoriteClick = useFavoriteHandle(id, isFavorite);
 
   return (
     <article
@@ -93,7 +77,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
         </div>
         <div className='place-card__rating rating'>
           <div className='place-card__stars rating__stars'>
-            <span style={{width: `${RATING_STAR_PERCENT * rating}%`}}></span>
+            <span style={{width: `${RATING_STAR_PERCENT * Math.floor(rating)}%`}}></span>
             <span className='visually-hidden'>Rating</span>
           </div>
         </div>

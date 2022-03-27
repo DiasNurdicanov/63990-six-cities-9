@@ -11,7 +11,7 @@ import {AuthorizationStatus} from '../../../const/auth-status';
 const mockStore = configureMockStore();
 
 const store = mockStore({
-  USER: {authorizationStatus: AuthorizationStatus.Auth},
+  USER: {authorizationStatus: AuthorizationStatus.Auth, userEmail: 'test@test.ru'},
 });
 
 describe('Component: NotFoundScreen', () => {

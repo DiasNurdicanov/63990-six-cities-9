@@ -1,9 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit';
 
+
 import {NameSpace} from '../../const/name-space';
 import {Hotel} from '../../types/hotel';
 import {Review} from '../../types/review';
 import {removeItem, updateItem} from '../../utils';
+import {FormState} from '../../const/form-state';
 
 type InitalState = {
   hotels: Hotel[];
@@ -12,6 +14,7 @@ type InitalState = {
   reviews: Review[];
   nearbyHotels: Hotel[];
   favorites: Hotel[];
+  formState: FormState;
 }
 
 const initialState: InitalState = {
@@ -21,6 +24,7 @@ const initialState: InitalState = {
   reviews: [],
   nearbyHotels: [],
   favorites: [],
+  formState: FormState.Blocked,
 };
 
 export const appData = createSlice({
@@ -51,12 +55,26 @@ export const appData = createSlice({
       if (state.favorites.length) {
         state.favorites = removeItem(state.favorites, action.payload);
       }
+
+      if (state.hotel) {
+        state.hotel = action.payload;
+      }
+
+      if (state.nearbyHotels.length) {
+        state.nearbyHotels = updateItem(state.nearbyHotels, action.payload);
+      }
     },
     loadFavorites: (state, action) => {
       state.favorites = action.payload;
       state.isDataLoaded = true;
     },
+    resetLoadedFlag: (state) => {
+      state.isDataLoaded = false;
+    },
+    setFormState: (state, action) => {
+      state.formState = action.payload;
+    },
   },
 });
 
-export const {loadHotels, loadHotelById, loadReviews, loadNearbyHotels, updateHotel, loadFavorites} = appData.actions;
+export const {loadHotels, loadHotelById, loadReviews, loadNearbyHotels, updateHotel, loadFavorites, resetLoadedFlag, setFormState} = appData.actions;

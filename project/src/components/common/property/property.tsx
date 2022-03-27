@@ -7,16 +7,21 @@ import ReviewList from '../review-list/review-list';
 import {useAppSelector} from '../../../hooks/';
 import {RATING_STAR_PERCENT} from '../../../const/common';
 import {AuthorizationStatus} from '../../../const/auth-status';
+import {useFavoriteHandle} from '../../../hooks/use-favorite-handle';
+import {Hotel} from '../../../types/hotel';
+import {Review} from '../../../types/review';
+import {getSortedReviews} from '../../../utils';
 
 const MAX_IMAGES_COUNT = 6;
 
-function Property(): JSX.Element | null {
-  const {authorizationStatus} = useAppSelector(({USER}) => USER);
-  const {hotel, reviews, nearbyHotels} = useAppSelector(({DATA}) => DATA);
+type PropertyProps = {
+  hotel: Hotel,
+  reviews: Review[],
+  nearbyHotels: Hotel[]
+}
 
-  if (hotel === null) {
-    return null;
-  }
+function Property({hotel, reviews, nearbyHotels}: PropertyProps): JSX.Element | null {
+  const {authorizationStatus} = useAppSelector(({USER}) => USER);
 
   const {
     images,
@@ -36,9 +41,11 @@ function Property(): JSX.Element | null {
   } = hotel;
 
   const isAuth = authorizationStatus === AuthorizationStatus.Auth;
-  const bookmarkBtnClassname = classNames('property__bookmark-button', 'button', {'property__bookmark-button': isFavorite});
+  const bookmarkBtnClassname = classNames('property__bookmark-button', 'button', {'property__bookmark-button--active': isFavorite});
   const hostAvatarClassname = classNames('property__avatar-wrapper user__avatar-wrapper', {'property__avatar-wrapper--pro': host.isPro});
-  const ratingWidth = `${RATING_STAR_PERCENT * rating}%`;
+  const ratingWidth = `${RATING_STAR_PERCENT * Math.floor(rating)}%`;
+
+  const handleFavoriteClick = useFavoriteHandle(id, isFavorite);
 
   return (
     <section className='property'>
@@ -66,7 +73,7 @@ function Property(): JSX.Element | null {
             <h1 className='property__name'>
               {title}
             </h1>
-            <button className={bookmarkBtnClassname} type='button'>
+            <button className={bookmarkBtnClassname} type='button' onClick={handleFavoriteClick}>
               <svg className='property__bookmark-icon' width='31' height='33'>
                 <use xlinkHref='#icon-bookmark'></use>
               </svg>
@@ -135,14 +142,14 @@ function Property(): JSX.Element | null {
           <section className='property__reviews reviews'>
             <h2 className='reviews__title' data-testid='title'>Reviews &middot; <span className='reviews__amount'>{reviews.length}</span></h2>
 
-            <ReviewList items={reviews} />
+            <ReviewList items={getSortedReviews(reviews)} />
 
             {isAuth && <AddReviewForm hotelId={id} />}
           </section>
         </div>
       </div>
       <section className='property__map map'>
-        <Map hotels={nearbyHotels} city={city} />
+        <Map hotels={[...nearbyHotels, hotel]} city={city} activeMarkerIndex={id} />
       </section>
     </section>
   );

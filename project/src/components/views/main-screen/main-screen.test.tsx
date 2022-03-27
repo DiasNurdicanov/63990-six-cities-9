@@ -7,27 +7,28 @@ import HistoryRouter from '../../common/history-route/history-route';
 import MainScreen from './main-screen';
 
 import {AuthorizationStatus} from '../../../const/auth-status';
-import {CitiesCoords} from '../../../const/cities';
 import {makeFakeHotel} from '../../../utils/mocks';
 import {SortingType} from '../../../const/sorting';
 
 const mockStore = configureMockStore();
 
-const store = mockStore({
-  USER: {authorizationStatus: AuthorizationStatus.Auth},
-  MAIN_SCREEN: {
-    city: CitiesCoords.Paris,
-    sortType: SortingType.Popular,
-  },
-  DATA: {
-    hotels: [makeFakeHotel()],
-    isDataLoaded: true,
-  },
-});
+const mockHotel = makeFakeHotel();
 
 describe('Component: main-screen', () => {
   it('should render "main-screen"', () => {
     const history = createMemoryHistory();
+
+    const store = mockStore({
+      USER: {authorizationStatus: AuthorizationStatus.Auth, userEmail: 'test@test.ru'},
+      MAIN_SCREEN: {
+        city: mockHotel.city,
+        sortType: SortingType.Popular,
+      },
+      DATA: {
+        hotels: [mockHotel],
+        isDataLoaded: true,
+      },
+    });
 
     render(
       <Provider store={store}>
@@ -40,4 +41,33 @@ describe('Component: main-screen', () => {
     expect(screen.getByText(/places to stay/i)).toBeInTheDocument();
     expect(screen.getByText(/Sort by/i)).toBeInTheDocument();
   });
+
+  it('should render "main-screen empty"', () => {
+    const history = createMemoryHistory();
+
+    const store = mockStore({
+      USER: {authorizationStatus: AuthorizationStatus.Auth, userEmail: 'test@test.ru'},
+      MAIN_SCREEN: {
+        city: mockHotel.city,
+        sortType: SortingType.Popular,
+      },
+      DATA: {
+        hotels: [],
+        isDataLoaded: true,
+      },
+    });
+
+    render(
+      <Provider store={store}>
+        <HistoryRouter history={history}>
+          <MainScreen />
+        </HistoryRouter>
+      </Provider>,
+    );
+
+    expect(screen.getByText(/No places to stay available/i)).toBeInTheDocument();
+    expect(screen.getByText(/We could not find/i)).toBeInTheDocument();
+  });
+
+
 });

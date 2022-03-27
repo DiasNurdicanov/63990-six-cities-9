@@ -1,5 +1,6 @@
 import {appData, loadFavorites, loadHotelById, loadNearbyHotels, loadReviews, updateHotel, loadHotels} from './app-data';
 import {makeFakeHotel, makeFakeReview} from '../../utils/mocks';
+import {FormState} from '../../const/form-state';
 
 const initialState = {
   hotels: [],
@@ -8,6 +9,7 @@ const initialState = {
   reviews: [],
   nearbyHotels: [],
   favorites: [],
+  formState: FormState.Blocked,
 };
 
 const hotel = makeFakeHotel();

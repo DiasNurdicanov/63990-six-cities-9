@@ -1,6 +1,7 @@
 import {SortingType, SortingTypes} from './const/sorting';
 import {AuthorizationStatus} from './const/auth-status';
 import {City, Hotel} from './types/hotel';
+import {Review} from './types/review';
 
 export const getOffers = (hotels: Hotel[], sortType: SortingType, city: City) =>
   hotels
@@ -45,3 +46,8 @@ export const getRandomInteger = (a = 0, b = 1) => {
 
   return Math.floor(lower + Math.random() * (upper - lower + 1));
 };
+
+export const getSortedReviews = (reviews: Review[]) =>
+  [...reviews]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 10);

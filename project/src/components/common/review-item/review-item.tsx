@@ -30,7 +30,7 @@ function ReviewItem({review}: ReviewProps): JSX.Element {
       <div className='reviews__info'>
         <div className='reviews__rating rating'>
           <div className='reviews__stars rating__stars'>
-            <span style={{width: `${RATING_STAR_PERCENT * rating}%`}}></span>
+            <span style={{width: `${RATING_STAR_PERCENT * Math.floor(rating)}%`}}></span>
             <span className='visually-hidden'>Rating</span>
           </div>
         </div>
