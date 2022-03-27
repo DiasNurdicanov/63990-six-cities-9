@@ -7,7 +7,14 @@ import userEvent from '@testing-library/user-event';
 import HistoryRouter from '../history-route/history-route';
 import AddReviewForm from './add-review-form';
 
+import {FormState} from '../../../const/form-state';
+
 const mockStore = configureMockStore();
+const store = mockStore({
+  DATA: {
+    formState: FormState.Blocked,
+  },
+});
 
 describe('Component: AddReviewForm', () => {
   it('should render "AddReviewForm"', () => {
@@ -15,7 +22,7 @@ describe('Component: AddReviewForm', () => {
     history.push('/login');
 
     render(
-      <Provider store={mockStore({})}>
+      <Provider store={store}>
         <HistoryRouter history={history}>
           <AddReviewForm hotelId={0} />
         </HistoryRouter>
