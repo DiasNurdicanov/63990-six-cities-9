@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import * as Redux from 'react-redux';
 import userEvent from '@testing-library/user-event';
 
-import HistoryRouter from '../history-route/history-route';
+import HistoryRouter from '../history-router/history-router';
 import Sorting from './sorting';
 
 import {NameSpace} from '../../../const/name-space';

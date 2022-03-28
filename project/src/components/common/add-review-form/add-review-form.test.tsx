@@ -4,7 +4,7 @@ import {configureMockStore} from '@jedmao/redux-mock-store';
 import {Provider} from 'react-redux';
 import userEvent from '@testing-library/user-event';
 
-import HistoryRouter from '../history-route/history-route';
+import HistoryRouter from '../history-router/history-router';
 import AddReviewForm from './add-review-form';
 
 import {FormState} from '../../../const/form-state';

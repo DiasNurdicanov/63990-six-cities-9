@@ -7,7 +7,7 @@ import {store} from './store';
 import {checkAuthAction} from './store/api-actions';
 
 import App from './components/app/app';
-import HistoryRouter from './components/common/history-route/history-route';
+import HistoryRouter from './components/common/history-router/history-router';
 
 import browserHistory from './browser-history';
 
