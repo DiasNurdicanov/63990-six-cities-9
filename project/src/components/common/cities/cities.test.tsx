@@ -7,11 +7,13 @@ import HistoryRouter from '../history-route/history-route';
 import Cities from './cities';
 
 import {makeFakeHotel} from '../../../utils/mocks';
+import {AuthorizationStatus} from '../../../const/auth-status';
 
 const mockStore = configureMockStore();
 const mockHotels = [makeFakeHotel()];
 
 const store = mockStore({
+  USER: {authorizationStatus: AuthorizationStatus.Auth, userEmail: 'test@test.ru'},
   MAIN_SCREEN: {
     city: makeFakeHotel().city,
   },

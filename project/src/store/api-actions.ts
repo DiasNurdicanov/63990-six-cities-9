@@ -2,8 +2,8 @@ import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 
 import {redirectToRoute} from './action';
-import {loadHotels, loadHotelById, loadReviews, loadNearbyHotels, updateHotel, loadFavorites} from './app-data/app-data';
-import {requireAuthorization} from './user-process/user-process';
+import {loadHotels, loadHotelById, loadReviews, loadNearbyHotels, updateHotel, loadFavorites, resetLoadedFlag, setFormState} from './app-data/app-data';
+import {requireAuthorization, loadUserData} from './user-process/user-process';
 
 import {saveToken, dropToken} from '../services/token';
 import {errorHandle} from '../services/error-handle';
@@ -17,6 +17,8 @@ import {Review} from '../types/review';
 import {AddReview} from '../types/add-review';
 import {ToggleFavoriteStatus} from '../types/toggle-favorite-status';
 import {AppDispatch, State} from '../types/state.js';
+import {ErrorSubtypes} from '../const/error-subtypes';
+import {FormState} from '../const/form-state';
 
 enum ApiActions {
   FetchHotels = 'data/fetchHotels',
@@ -54,8 +56,9 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
 }>(
   ApiActions.UserCheckAuth,
   async (_arg, {dispatch, extra: api}) => {
-    await api.get(APIRoute.Login);
+    const {data: {email}} = await api.get(APIRoute.Login);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    dispatch(loadUserData(email));
   },
 );
 
@@ -106,7 +109,7 @@ export const fetchHotelByIdAction = createAsyncThunk<void, string, {
       const {data} = await api.get<Hotel>(`${APIRoute.Hotel}${hotelId}`);
       dispatch(loadHotelById(data));
     } catch (error) {
-      errorHandle(error);
+      errorHandle(error, ErrorSubtypes.HotelNotFound);
     }
   },
 );
@@ -154,8 +157,9 @@ export const addReviewAction = createAsyncThunk<void, AddReview, {
       const {comment, rating} = reviewData;
       const {data} = await api.post<Review[]>(`${APIRoute.Reviews}${hotelId}`, {comment, rating});
       dispatch(loadReviews(data));
+      dispatch(setFormState(FormState.Cleared));
     } catch (error) {
-      errorHandle(error);
+      errorHandle(error, ErrorSubtypes.ReviewNotSend);
     }
   },
 );
@@ -185,6 +189,7 @@ export const fetchFavorites = createAsyncThunk<void, undefined, {
   ApiActions.FetchFavorites,
   async (_arg, {dispatch, extra: api}) => {
     try {
+      dispatch(resetLoadedFlag());
       const {data} = await api.get<Hotel[]>(APIRoute.Favorites);
       dispatch(loadFavorites(data));
     } catch (error) {

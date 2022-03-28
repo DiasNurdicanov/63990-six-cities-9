@@ -4,15 +4,14 @@ import {logoutAction} from '../../../store/api-actions';
 
 import {useAppSelector, useAppDispatch} from '../../../hooks';
 import {AuthorizationStatus} from '../../../const/auth-status';
-
+import {AppRoute} from '../../../const/routes';
 
 type HeaderProps = {
   showNav?: boolean
 }
 
 function Header({showNav}: HeaderProps): JSX.Element {
-  const {authorizationStatus} = useAppSelector(({USER}) => USER);
-
+  const {authorizationStatus, userEmail} = useAppSelector(({USER}) => USER);
   const isAuth = authorizationStatus === AuthorizationStatus.Auth;
 
   const dispatch = useAppDispatch();
@@ -37,13 +36,13 @@ function Header({showNav}: HeaderProps): JSX.Element {
             <nav className='header__nav'>
               <ul className='header__nav-list'>
                 <li className='header__nav-item user'>
-                  <a className='header__nav-link header__nav-link--profile' href={isAuth ? '!#' : '/login'}>
+                  <Link className='header__nav-link header__nav-link--profile' to={isAuth ? AppRoute.Favorites : AppRoute.SignIn}>
                     <div className='header__avatar-wrapper user__avatar-wrapper'>
                     </div>
                     {isAuth ?
-                      <span className='header__user-name user__name'>Oliver.conner@gmail.com</span> :
+                      <span className='header__user-name user__name'>{userEmail}</span> :
                       <span className='header__login'>Sign in</span>}
-                  </a>
+                  </Link>
                 </li>
 
                 {isAuth && (

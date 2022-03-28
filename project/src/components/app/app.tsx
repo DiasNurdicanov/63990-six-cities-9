@@ -1,4 +1,4 @@
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, Navigate} from 'react-router-dom';
 
 import MainScreen from '../views/main-screen/main-screen';
 import FavoritesScreen from '../views/favorites-screen/favorites-screen';
@@ -7,8 +7,13 @@ import PropertyScreen from '../views/property-screen/property-screen';
 import NotFoundScreen from '../views/not-found-screen/not-found-screen';
 
 import {AppRoute} from '../../const/routes';
+import {AuthorizationStatus} from '../../const/auth-status';
+import {useAppSelector} from '../../hooks';
 
 function App(): JSX.Element {
+  const {authorizationStatus} = useAppSelector(({USER}) => USER);
+  const isAuth = authorizationStatus === AuthorizationStatus.Auth;
+
   return (
     <Routes>
       <Route
@@ -20,7 +25,7 @@ function App(): JSX.Element {
 
       <Route
         path={AppRoute.SignIn}
-        element={<LoginScreen />}
+        element={isAuth ? <Navigate to={AppRoute.Main} /> : <LoginScreen />}
       />
 
       <Route

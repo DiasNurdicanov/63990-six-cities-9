@@ -7,16 +7,20 @@ import HistoryRouter from '../history-route/history-route';
 import PlaceCard from './place-card';
 
 import {makeFakeHotel} from '../../../utils/mocks';
+import {AuthorizationStatus} from '../../../const/auth-status';
 
 const mockCard = makeFakeHotel();
 const mockStore = configureMockStore();
+const store = mockStore({
+  USER: {authorizationStatus: AuthorizationStatus.Auth, userEmail: 'test@test.ru'},
+});
 
 describe('Component: PlaceCard', () => {
   it('should render "PlaceCard"', () => {
     const history = createMemoryHistory();
 
     render(
-      <Provider store={mockStore({})}>
+      <Provider store={store}>
         <HistoryRouter history={history}>
           <PlaceCard
             hotel={mockCard}

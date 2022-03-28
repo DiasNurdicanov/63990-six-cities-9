@@ -12,7 +12,7 @@ import {makeFakeHotel, makeFakeReview} from '../../../utils/mocks';
 const mockStore = configureMockStore();
 
 const store = mockStore({
-  USER: AuthorizationStatus.Auth,
+  USER: {authorizationStatus: AuthorizationStatus.Auth, userEmail: 'test@test.ru'},
   DATA: {
     hotel: makeFakeHotel(),
     reviews: [makeFakeReview()],
@@ -27,7 +27,7 @@ describe('Component: Property', () => {
     render(
       <Provider store={store}>
         <HistoryRouter history={history}>
-          <Property />
+          <Property hotel={makeFakeHotel()} reviews={[makeFakeReview()]} nearbyHotels={[makeFakeHotel()]} />
         </HistoryRouter>
       </Provider>,
     );

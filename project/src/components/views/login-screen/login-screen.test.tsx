@@ -17,7 +17,7 @@ describe('Component: LoginScreen', () => {
     history.push('/login');
 
     render(
-      <Provider store={mockStore({USER: {authorizationStatus: AuthorizationStatus.Auth}})}>
+      <Provider store={mockStore({USER: {authorizationStatus: AuthorizationStatus.Auth, userEmail: 'test@test.ru'}})}>
         <HistoryRouter history={history}>
           <LoginScreen />
         </HistoryRouter>

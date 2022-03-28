@@ -11,14 +11,15 @@ import {AppRoute} from '../../const/routes';
 import {SortingType} from '../../const/sorting';
 import {Cities, CitiesCoords} from '../../const/cities';
 import {makeFakeHotel} from '../../utils/mocks';
+
 const mockStore = configureMockStore();
 
 const store = mockStore({
-  USER: {authorizationStatus: AuthorizationStatus.Auth},
+  USER: {authorizationStatus: AuthorizationStatus.NoAuth, userEmail: 'test@test.ru'},
   DATA: {
     isDataLoaded: true,
     hotels: [],
-    favorites: [],
+    favorites: [makeFakeHotel()],
     hotel: makeFakeHotel(),
     reviews: [],
     nearbyHotels: [],

@@ -50,7 +50,7 @@ describe('Component: PrivateRouter', () => {
 
   it('should render component for private route, when user authorized', () => {
     const store = mockStore({
-      USER: {authorizationStatus: AuthorizationStatus.Auth},
+      USER: {authorizationStatus: AuthorizationStatus.Auth, userEmail: 'test@test.ru'},
     });
 
     render(
